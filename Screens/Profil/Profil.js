@@ -21,110 +21,81 @@ export default class Profil extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = ({
-          firstName: '',
-          url_photo: 'http://www.super-blagues.fr/assets/images/profil/profil_defaut.png'
+          username: '',
+          email: '',
+          id: ''
         })
     }
+
     componentDidMount = () => {
-
-      let keys = ['firstname', 'url_photo'];
-
-        AsyncStorage.multiGet(keys, (err, stores) => {
-          stores.map((result, i, store) => {
-            switch (store[i][0]) {
-              case 'firstname':
-                this.setState({firstname: store[i][1]})
-                break;
-              case 'url_photo':
-                this.setState({url_photo: store[i][1]})
-                break;
-              default:
-                break;
-            }
-          })
+      let keys = ['username', 'email', 'id'];
+      AsyncStorage.multiGet(keys, (err, stores) => {
+        stores.map((result, i, store) => {
+        switch (store[i][0]) {
+          case 'username':
+            this.setState({username: store[i][1]})
+            break;
+          case 'email':
+            this.setState({email: store[i][1]})
+            break;
+          case 'id  ':
+            this.setState({id : store[i][1]})
+            break;
+          default:
+            break;
+          }
         })
-
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-
-    }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-    }
-
-    handleBackButton() {
-        //ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
-        return true;
+      })
     }
 
     deconnexion() {
-
-        let keys = ['email', 'nom', 'firstname', 'url_photo'];
-        AsyncStorage.multiRemove(keys, (err) => {
-            this.props.navigation.navigate('Connexion');
-        });
-
+      let keys = ['email', 'username', 'id'];
+      AsyncStorage.multiRemove(keys, (err) => {
+        this.props.navigation.navigate('Connexion');
+      });
     }
 
-
     render() {
+      return (
+        <View style={styles.container}>
+          <View style={styles.headerProfil}>
+            <View><Text style={{fontSize: 22, textAlign: 'center'}}> Bonjour {this.state.username}</Text></View>
+            <View><Text style={{fontSize: 22, textAlign: 'center'}}> {this.state.email}</Text></View>
+          </View>
 
-        console.log(this.artisan);
+          <View
+            style={{
+              borderBottomColor: 'gray',
+              borderBottomWidth: 0.5,
+              marginBottom: 15,
+              marginTop: 0
+            }}
+          />
 
-        return (
-          <View style={styles.container}>
-              <View style={styles.headerProfil}>
-                  <Text style={{marginLeft: 50, fontSize: 18, flex: 1}}> Profil</Text>
-                  <Image
-                      style={{
-                          alignSelf: 'center',
-                          height: 60,
-                          width: 60,
-                          borderRadius: 100,
-                          flex: 1
-                          //borderWidth: 2,
-                      }}
-                      // source={{uri: 'http://10.0.2.2:80/restBeewe2/img/' + this.artisan[0].url_photo}}
-                      source={{uri: this.state.url_photo}}
-                      resizeMode="stretch"
-                  />
-                  <View style={{flex: 2, paddingLeft: 20, paddingTop: 20}}>
-                    <View><Text style={{fontSize: 16}}> Bonjour {this.state.firstname}</Text></View>
-                    <View>
-                      <TouchableOpacity>
-                        <Text>Éditer mon profil &nbsp; &nbsp; <Ionicons name="md-create" size={20} /> </Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-              </View>
+          <ScrollView style={{flex: 4}}>
 
-              <ScrollView style={{flex: 4}}>
+            <View style={styles.viewItem}>
+              <Ionicons name="md-send" size={30} style={styles.iconItem} />
+              <TouchableHighlight
+                style={styles.highLightItem}
+                onPress={() => this.props.navigation.navigate('InviteFriend')}>
+                <Text style={styles.textItem} >
+                  Changer les informations de mon profil
+                </Text>
+              </TouchableHighlight>
+            </View>
 
-
-                <View style={styles.viewItem}>
-                  <Ionicons name="md-send" size={30} style={styles.iconItem} />
-                  <TouchableHighlight
-                      style={styles.highLightItem}
-                      onPress={() => this.props.navigation.navigate('InviteFriend')}>
-                      <Text style={styles.textItem} >
-                        Inviter des amis
-                      </Text>
-                  </TouchableHighlight>
-                </View>
-
-
-                <View style={styles.viewItem}>
-                  <Ionicons name="md-briefcase" size={30} style={styles.iconItem} />
-                  <TouchableHighlight
-                      style={styles.highLightItem}
-                      onPress={() => {}}>
-                      <Text style={styles.textItem} >
-                        Parrainer un artisan (Ne fait rien pour le moment)
-                      </Text>
-                  </TouchableHighlight>
-                </View>
+            <View style={styles.viewItem}>
+              <Ionicons name="md-briefcase" size={30} style={styles.iconItem} />
+              <TouchableHighlight
+                style={styles.highLightItem}
+                onPress={() => {}}>
+                <Text style={styles.textItem} >
+                  Changer mon mot de passe
+                </Text>
+              </TouchableHighlight>
+            </View>
 
                 <View
                   style={{
@@ -136,28 +107,39 @@ export default class Profil extends React.Component {
                 />
 
                 <View>
-                  <Text style={{fontSize: 15, color: 'gray', marginLeft: 20, marginBottom: 10}}> Beeshary </Text>
+                  <Text style={{fontSize: 15, color: 'gray', marginLeft: 20, marginBottom: 10}}> Thema Café Montpellier </Text>
                 </View>
 
                 <View style={styles.viewItem}>
                   <Ionicons name="md-people" size={30} style={styles.iconItem} />
                   <TouchableHighlight
-                      style={styles.highLightItem}
-                      onPress={() => this.props.navigation.navigate('FirstLaunch')}>
-                      <Text style={styles.textItem} >
-                        Comment ça marche ?
-                      </Text>
+                  style={styles.highLightItem}
+                  onPress={() => this.props.navigation.navigate('WhoIsBeeShary')}>
+                  <Text style={styles.textItem} >
+                    Qui sommes-nous ?
+                    </Text>
                   </TouchableHighlight>
                 </View>
 
                 <View style={styles.viewItem}>
                   <Ionicons name="logo-game-controller-a" size={30} style={styles.iconItem} />
                   <TouchableHighlight
-                      style={styles.highLightItem}
-                      onPress={() => this.props.navigation.navigate('WhoIsBeeShary')}>
-                      <Text style={styles.textItem} >
-                        Qui sommes nous ?
-                      </Text>
+                    style={styles.highLightItem}
+                    onPress={() => this.props.navigation.navigate('WhoIsBeeShary')}>
+                    <Text style={styles.textItem} >
+                        Les partenaires
+                    </Text>
+                  </TouchableHighlight>
+                </View>
+
+                <View style={styles.viewItem}>
+                  <Ionicons name="logo-game-controller-a" size={30} style={styles.iconItem} />
+                  <TouchableHighlight
+                    style={styles.highLightItem}
+                    onPress={() => this.props.navigation.navigate('WhoIsBeeShary')}>
+                    <Text style={styles.textItem} >
+                        RGPD et CGV
+                    </Text>
                   </TouchableHighlight>
                 </View>
 
@@ -175,49 +157,26 @@ export default class Profil extends React.Component {
                 </View>
 
                 <View style={styles.viewItem}>
-                  <Ionicons name="md-chatboxes" size={30} style={styles.iconItem} />
-                  <TouchableHighlight
-                      style={styles.highLightItem}
-                      onPress={() => this.props.navigation.navigate('FAQ')}>
-                      <Text style={styles.textItem} >
-                        FAQ
-                      </Text>
-                  </TouchableHighlight>
-                </View>
-
-                <View style={styles.viewItem}>
-                  <Ionicons name="md-flag" size={30} style={styles.iconItem} />
-                  <TouchableHighlight
-                      style={styles.highLightItem}
-                      onPress={() => this.props.navigation.navigate('PrivacyPolicy')}>
-                      <Text style={styles.textItem} >
-                        Politique de confidentialité
-                      </Text>
-                  </TouchableHighlight>
-                </View>
-
-                <View style={styles.viewItem}>
                   <Ionicons name="md-mail" size={30} style={styles.iconItem} />
                   <TouchableHighlight
-                      style={styles.highLightItem}
-                      onPress={() => this.props.navigation.navigate('ContactUs')}>
-                      <Text style={styles.textItem} >
-                        Contactez-nous
-                      </Text>
+                    style={styles.highLightItem}
+                    onPress={() => this.props.navigation.navigate('ContactUs')}>
+                    <Text style={styles.textItem} >
+                      Contactez-nous
+                    </Text>
                   </TouchableHighlight>
                 </View>
 
                 <View style={styles.viewItem}>
                   <Ionicons name="md-log-out" size={30} style={styles.iconItem} />
                   <TouchableHighlight
-                      style={styles.highLightItem}
-                      onPress={() => this.deconnexion()}>
-                      <Text style={styles.textItem} >
-                        Déconnexion
-                      </Text>
+                    style={styles.highLightItem}
+                    onPress={() => this.deconnexion()}>
+                    <Text style={styles.textItem} >
+                      Déconnexion
+                    </Text>
                   </TouchableHighlight>
                 </View>
-
 
               </ScrollView>
           </View>
@@ -233,10 +192,10 @@ const styles = StyleSheet.create({
     headerProfil: {
         paddingTop: 20,
         paddingBottom: 20,
-        backgroundColor: "#58d3ce",
-        alignSelf: 'stretch',
-        flex: 0.35,
-        flexDirection: 'row'
+        backgroundColor: "#fff",
+        alignSelf: 'center',
+        flex: 0.15,
+        flexDirection: 'column'
     },
     viewItem: {
       flexDirection:'row',

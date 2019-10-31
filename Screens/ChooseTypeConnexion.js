@@ -26,7 +26,7 @@ export default class ChooseTypeConnexion extends React.Component {
     componentDidMount = () => {
       AsyncStorage.getItem('email').then((value) => {
         if (value !== null){
-          this.props.navigation.navigate('MainHome');
+          this.props.navigation.navigate('Profil');
         }
       });
     }

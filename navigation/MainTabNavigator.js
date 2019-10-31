@@ -122,7 +122,8 @@ import ContactUs from '../Screens/Profil/ContactUs'
    InviteFriend: {
      screen: InviteFriend,
      navigationOptions: {
-       header: null
+       title: 'Modifier ses informations personnelles'
+       // header: true
      }
    },
    WhoIsBeeShary: {

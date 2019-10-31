@@ -18,7 +18,6 @@ import {
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {TextField} from 'react-native-material-textfield';
 import Button from 'react-native';
-// let FloatingLabel = require('react-native-floating-labels');
 const { width, height } = Dimensions.get('window')
 
 export default class Connexion extends React.Component {
@@ -51,10 +50,6 @@ export default class Connexion extends React.Component {
       this.password = pass
     }
 
-    onErrorChange(error) {
-      this.setState({error});
-    }
-
     submit() {
       let error = "";
       if (this.email === "") {
@@ -72,7 +67,6 @@ export default class Connexion extends React.Component {
           return [];
       }
     }
-
 
     submitToAPI() {
       let data = {
@@ -107,13 +101,11 @@ export default class Connexion extends React.Component {
                 'email',
                 'username',
                 'id',
-                'url_photo'
               ];
             let values = [
               responseJson.user.email,
               responseJson.user.username,
-              responseJson.user.id,
-              'https://img.20mn.fr/sIChN5W-TCG0VWSpGYJYLw/310x190_tous-trolls.jpg'
+              responseJson.user.id.toString(),
             ];
             this.setDataToAsyncStorage(keys, values);
 
@@ -226,59 +218,6 @@ const styles = StyleSheet.create({
       textAlign: 'left',
       color: 'white'
     },
-
-    labelInput: {
-        color: '#FFFFFF',
-    },
-    formInput: {
-        width: 330,
-        borderBottomWidth: 1.5,
-        marginLeft: 20,
-        borderColor: '#FFFFFF',
-    },
-    input: {
-        color: "white",
-        borderWidth: 0
-    },
-    inputCo: {
-        height: 50,
-        borderBottomWidth: 1.5,
-        backgroundColor: 'transparent',
-        borderRadius: 5,
-        paddingLeft: 10,
-        marginTop: 10,
-        borderWidth: 0,
-        borderColor: '#8e8e8e',
-        fontSize: 16,
-        alignSelf: 'stretch',
-        color: "white",
-    },
-    btnCo: {
-        backgroundColor: '#ffc80b',
-        borderRadius: 2,
-        alignSelf: 'center',
-        marginTop: 20,
-    },
-    textButtonCo: {
-      justifyContent:'center',
-      color: 'white',
-      paddingTop: 15,
-      paddingBottom: 15,
-      fontSize: 18,
-      marginLeft: 100,
-      marginRight: 100
-    },
-    btnCompte: {
-        backgroundColor: 'transparent',
-        height: 50,
-        borderRadius: 3,
-        paddingTop: 11,
-        alignSelf: 'stretch',
-        marginTop: 15,
-        fontSize: 14,
-        color: 'white',
-        fontWeight: "100"
-    },
     modalErr: {
         flex: 1,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -300,34 +239,5 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         marginRight: 20,
         marginLeft: 20,
-    },
-
-    buttonBottom: {
-      flexDirection: 'row',
-      backgroundColor: 'rgba(0, 0, 0, 0.6)',
-      position: 'absolute',
-      bottom: 0,
-      height: 40,
-      alignItems: 'center',
-    },
-
-    textSignUp: {
-      color: 'white',
-      textAlign: 'right',
-      textAlignVertical: 'center',
-      flex: 1,
-      height: 40
-    },
-
-    buttonSignUp: {
-      flex: 0.6,
-      height: 40,
-    },
-
-    activeTextSignUp: {
-      color: 'yellow',
-      textAlign: 'left',
-      textAlignVertical: 'center',
-      height: 40,
     }
 });

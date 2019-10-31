@@ -11,72 +11,242 @@ import {
     TouchableHighlight,
     AsyncStorage,
     BackHandler,
-    ToastAndroid
+    ToastAndroid,
+    ScrollView,
+    Alert
 } from 'react-native';
 
+import PasswordInputText from 'react-native-hide-show-password-input';
+import {TextField} from 'react-native-material-textfield';
 
 export default class InviteFriend extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.password = "",
+    this.state = ({
+      username: "",
+      email: "",
+      password:"",
+      messageError: "",
+      modalVisible: false
+    })
 
-    constructor(props) {
-        super(props);
+  }
 
-        this.state = ({})
+  componentDidMount = () => {
+    let keys = ['username', 'email', 'id'];
+    AsyncStorage.multiGet(keys, (err, stores) => {
+      stores.map((result, i, store) => {
+        switch (store[i][0]) {
+          case 'username':
+            this.setState({username: store[i][1]})
+            this.username = store[i][1];
+            break;
+          case 'email':
+            this.setState({email: store[i][1]})
+            this.email = store[i][1];
+            break;
+          case 'id':
+            this.setState({id : store[i][1]})
+            break;
+          default:
+            break;
+        }
+      })
+    })
+  }
+
+  onMailChange(mail){
+    this.email = mail;
+  }
+
+  onPasswordChange(password){
+    this.password = password;
+  }
+
+  onUsernameChange(username){
+    console.log("username change");
+    this.username = username;
+  }
+
+  submit() {
+    let error = "";
+    if (this.email === "") {
+      error += "Vous ne pouvez pas laisser l'adresse mail vide\n"
     }
-    componentDidMount() {
-
-        AsyncStorage.multiGet(['email', 'nom']).then((data) => {
-            let emailSession = data[0][1];
-            let nomSession = data[1][1];
-
-            if (emailSession !== null && nomSession !== null) {
-
-            }
-            else {
-                this.props.navigation.navigate('Connexion');
-            }
-        });
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-
+    if (this.username === ""){
+      error += "Vous ne pouvez pas laisser le pseudo vide\n";
     }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    if (this.password === "") {
+      error += "Mot de passe nécessaire pour valider les modifications\n";
     }
-
-    handleBackButton() {
-        //ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
-        return true;
+    console.log(error);
+    if (error === "") {
+      return (this.submitToAPI());
     }
+    else {
+      this.setState({messageError: error});
+      this.setState({modalVisible: true});
+      return [];
+    }
+  }
+
+  submitToAPI() {
+    let data = {
+      method: 'POST',
+      credentials: 'same-origin',
+      mode: 'same-origin',
+      body: JSON.stringify({
+        id: this.state.id,
+        email: this.email,
+        username: this.username,
+        password: this.password
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return fetch('https://www.thema-cafe.fr/api/profile/edit', data)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+
+        switch (responseJson.statut) {
+          case 'OK':
+            Alert.alert('Les modifications ont bien étés prises en compte');
+            this.props.navigation.goBack();
+            break;
+          default:
+            this.setState({messageError: responseJson.message});
+            this.setState({modalVisible: true});
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        console.error(error);
+      });
+  }
 
 
-    render() {
-        return (
-            <View style={styles.container}>
+  render() {
+    return (
 
-                <Text>Bientôt il y aura un formulaire pour inviter un amis ici.</Text>
+        <ScrollView style={styles.container2}>
 
-                <TouchableOpacity
-                onPress={ () => {this.props.navigation.navigate('Profil')}}>
-                  <Text>Revenir au profil</Text>
-                </TouchableOpacity>
+        <TextField
+          label="Nouveau pseudo"
+          autoCapitalize="none"
+          autoCorrect={false}
+          textColor='black'
+          baseColor='black'
+          tintColor='black'
+          fontSize={20}
+          titleFontSize={17}
+          onChangeText={(username) => this.onUsernameChange(username)}
+          value={this.username}
+          defaultValue={this.state.username}
+          placeholder="Ex: thema12"
+          keyboardType='email-address'
+        />
 
+        <TextField
+          label="Nouvelle adresse mail"
+          autoCapitalize="none"
+          autoCorrect={false}
+          textColor='black'
+          baseColor='black'
+          tintColor='black'
+          fontSize={20}
+          titleFontSize={17}
+          onChangeText={(email) => this.onMailChange(email)}
+          defaultValue={this.state.email}
+          value={this.email}
+          placeholder="example@gmail.com"
+          keyboardType='email-address'
+        />
+
+        <PasswordInputText
+            value={this.password}
+            iconColor='black'
+            autoCapitalize="none"
+            autoCorrect={false}
+            label="Entrez votre mot de passe pour valider les modifications"
+            fontSize={20}
+            titleFontSize={17}
+            textColor='black'
+            baseColor='black'
+            tintColor='black'
+            placeholder="********"
+            onChangeText={(password) => this.onPasswordChange(password)}
+        />
+
+        <TouchableOpacity
+          style={{backgroundColor: '#ffc80b',borderRadius: 2,alignSelf: 'center',marginTop: 20,}}
+          onPress={() => this.submit()}>
+          <View style={{justifyContent:'center'}}>
+            <Text style={{justifyContent:'center',color: 'white',paddingTop: 15,paddingBottom: 15,fontSize: 18,marginLeft: 50,marginRight: 50}}>Modifier</Text>
+          </View>
+        </TouchableOpacity>
+
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {this.setState({modalVisible: false})}}>
+          <View style={styles.modalErr}>
+            <View style={styles.modalErr2}>
+              <Text style={{fontSize:20, fontWeight: 'bold'}}>Erreur</Text>
+              <Text>{this.state.messageError}</Text>
+              <TouchableHighlight
+                style={styles.btnOkModal}
+                onPress={() => this.setState({modalVisible: false})}>
+                <Text style={{textAlign: 'center', color: 'white', paddingTop: 15, paddingBottom: 15}}>OK</Text>
+              </TouchableHighlight>
             </View>
-        );
-    }
+          </View>
+        </Modal>
+
+      </ScrollView>
+    );
+  }
+
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         alignItems: 'center',
         backgroundColor: '#fff'
     },
-    headerProfil: {
+    container2: {
+        // flex: 1,
+        paddingLeft: 40,
+        paddingRight: 40,
+        paddingTop: 30,
+    },
+    modalErr: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'center',
+        paddingLeft: 60,
+        paddingRight: 60
+    },
+    modalErr2: {
+        backgroundColor: '#fff',
         alignItems: 'center',
+        justifyContent: 'center',
         paddingTop: 20,
         paddingBottom: 20,
-        backgroundColor: "#58d3ce",
-        alignSelf: 'stretch',
+        paddingRight: 10,
+        paddingLeft: 10
     },
+    btnOkModal: {
+        backgroundColor: "#0011af",
+        alignSelf: 'stretch',
+        marginRight: 20,
+        marginLeft: 20,
+    }
 });

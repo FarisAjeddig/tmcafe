@@ -29,7 +29,6 @@ const styles = {
 export default class FirstLaunch extends Component {
   constructor() {
     super();
-    this._bootstrapAsync();
   }
 
   componentDidMount(){
@@ -37,13 +36,6 @@ export default class FirstLaunch extends Component {
   }
 
   _bootstrapAsync = async () => {
-    await AsyncStorage.getItem('firstLaunch').then((value) => {
-      if (value !== null){
-        this.props.navigation.navigate('ConnexionPicker');
-      } else {
-        this.props.navigation.navigate('FirstLaunch')
-      }
-    });
     this.props.navigation.navigate('ConnexionPicker');
   };
 
