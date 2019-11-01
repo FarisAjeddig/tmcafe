@@ -6,27 +6,21 @@ import {
     Image,
     TouchableOpacity,
     ImageBackground,
-    AsyncStorage,
-    Button,
-    Alert
+    AsyncStorage
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 
 export default class ChooseTypeConnexion extends React.Component {
     constructor(props) {
         super(props);
         this.state = ({
-            mail: "",
-            pass: "",
-            modalVisible: false,
         });
     }
 
     componentDidMount = () => {
       AsyncStorage.getItem('email').then((value) => {
         if (value !== null){
-          this.props.navigation.navigate('Profil');
+          this.props.navigation.navigate('MainHome');
         }
       });
     }
@@ -37,59 +31,6 @@ export default class ChooseTypeConnexion extends React.Component {
 
     _goConnexion() {
       this.props.navigation.navigate('Connexion');
-    }
-
-    getDatasArtisansForFB() {
-        let data = {
-            method: 'POST',
-            credentials: 'same-origin',
-            mode: 'same-origin',
-            body: JSON.stringify({
-                email: this.state.user['profile']['email'],
-                firstname: this.state.user['profile']['first_name'],
-                lastname: this.state.user['profile']['last_name'],
-                idfb: this.state.user['profile']['id'],
-                token: this.state.user['credentials']['token'],
-                picture: this.state.user['profile']['picture']['data']['url'],
-
-
-            }),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            }
-        };
-        //console.log(data);
-        //console.log(this.state);
-        return fetch('https://dev.beeshary.com/restBeewe2/SignUpWithFB.php', data)
-            .then((response) => response.json())
-            .then((responseJson) => {
-
-                this.setState({artisansInfos: responseJson});
-
-                console.log(responseJson[0].email);
-                console.log(responseJson[0].lastname);
-
-                if (responseJson == '') {
-                    this.setState({modalVisible: true});
-                }
-                else {
-
-                    AsyncStorage.multiSet([
-
-                        ["email", responseJson[0].email],
-                        ["nom", responseJson[0].lastname]
-                    ]);
-
-                    this.props.navigation.navigate('Profil', {
-                        artisan: responseJson
-                    });
-                }
-
-            })
-            .catch((error) => {
-                console.error(error);
-            });
     }
 
     render() {
@@ -134,38 +75,6 @@ const styles = StyleSheet.create({
         paddingLeft: 40,
         paddingRight: 40,
         paddingTop: 30,
-    },
-    btnCompte: {
-        backgroundColor: 'white',
-        height: 50,
-        borderRadius: 3,
-        paddingTop: 11,
-        alignSelf: 'stretch',
-        marginTop: 15,
-        borderWidth: 0.5,
-        borderColor: '#8e8e8e',
-    },
-    modalErr: {
-        flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        justifyContent: 'center',
-        paddingLeft: 60,
-        paddingRight: 60
-    },
-    modalErr2: {
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 60,
-        paddingBottom: 60,
-        paddingRight: 10,
-        paddingLeft: 10
-    },
-    backImage: {
-        color: 'white',
-        //fontFamily: 'HELR45W',
-        fontSize: 16,
-        textAlign: 'center',
     },
     account: {
         color: 'white',

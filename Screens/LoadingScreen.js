@@ -2,31 +2,26 @@ import React, { Component } from 'react'
 import {
   View,
   Image,
-  StatusBar,
-  Dimensions,
-  AsyncStorage,
-  ActivityIndicator,
+  StyleSheet
 } from 'react-native'
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   imageCenter: {
-      borderRadius: 5,
-      flex: 5,
-      justifyContent: 'center',
-      height: 300,
-      width: 300,
-      resizeMode: 'contain'
+    borderRadius: 5,
+    flex: 5,
+    justifyContent: 'center',
+    height: 300,
+    width: 300,
+    resizeMode: 'contain'
   },
+})
 
-}
-
-export default class FirstLaunch extends Component {
+export default class LoadingScreen extends Component {
   constructor() {
     super();
   }
@@ -38,7 +33,6 @@ export default class FirstLaunch extends Component {
   _bootstrapAsync = async () => {
     this.props.navigation.navigate('ConnexionPicker');
   };
-
 
   render () {
     return (

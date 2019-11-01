@@ -4,20 +4,15 @@ import {
     Text,
     View,
     Image,
-    TextInput,
     TouchableOpacity,
     ImageBackground,
     Modal,
     TouchableHighlight,
     AsyncStorage,
-    BackHandler,
-    ToastAndroid,
-    Dimensions,
-    Alert
+    Dimensions
 } from 'react-native';
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {TextField} from 'react-native-material-textfield';
-import Button from 'react-native';
 const { width, height } = Dimensions.get('window')
 
 export default class Connexion extends React.Component {
@@ -212,7 +207,6 @@ const styles = StyleSheet.create({
         paddingRight: 40,
         paddingTop: 30,
     },
-
     title: {
       fontSize: 42,
       textAlign: 'left',

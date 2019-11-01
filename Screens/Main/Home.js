@@ -15,7 +15,7 @@ import {Ionicons} from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window')
 
-export default class HomeDetails extends React.Component {
+export default class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -24,132 +24,54 @@ export default class HomeDetails extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-              <View style={{ width: width, height: 150}}>
-                <ImageBackground
-                source={require('../../public/img/photo_large_temporaire.jpg')}
-                style={{
-                  alignItems: 'center',
-                  flex: 1
-                }}>
-                <View style={{flex: 0.3}} />
-                <View style={{flex: 1}}>
-                  <TouchableOpacity
-                    onPress={() => {}}
-                    style={{backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={{height: 40, color: 'gray', fontSize: 14, paddingRight: 100, paddingLeft: 20, paddingTop: 8, marginTop: 3, marginBottom: 0}}>Nice - France </Text>
-                    <Ionicons name="md-search" size={30} color="grey" style={{paddingRight: 15, paddingLeft: 10, marginTop: 5, marginBottom: 5}} />
-                  </TouchableOpacity>
-                </View>
-                </ImageBackground>
-              </View>
               <ScrollView style={{flexDirection: 'column', width: width}}>
                 <View style={{flex: 1, flexDirection: 'column'}}>
-                  <View style={{flexDirection: 'row'}}>
+                  <View style={{flexDirection: 'row', paddingTop: 40}}>
                     <Text style={styles.title}>
-                      Activités artisanales
+                      Les prochaines soirées
                     </Text>
-                    <Text style={styles.seeMore}>
+                    {/*<Text style={styles.seeMore}>
                       VOIR +
-                    </Text>
+                    </Text>*/}
                   </View>
 
                   {/* Volet "Activités artisanales" */}
                   <View style={{ height: 250, marginTop: 20 }}>
-                    <ScrollView
-                      horizontal={true}
-                      showsHorizontalScrollIndicator={false}
-                    >
-                      <View style={styles.viewActivity}>
+                  <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                  >
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
+                      <View style={stylesManif.viewActivity}>
                         <View>
                           <ImageBackground
                           source={require('../../public/img/image_carre_temporaire.jpg')}
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            flexDirection: 'column'
-                          }}>
-                            <Text style={styles.categorie}>CATÉGORIE</Text>
-                            <Text style={styles.priceOne}>À partir de </Text>
-                            <Text style={styles.priceTwo}>12€</Text>
+                          style={{width: '100%',height: '100%'}}>
                           </ImageBackground>
                         </View>
-                        <View style={styles.textUnderActivityPicture}>
-                          <Text style={styles.activityName}>Nom de l'activité</Text>
-                          <Text style={styles.activityPlace}>Adresse de l'activité</Text>
-                          <View style={styles.viewActivityWith}>
-                            <Image
-                            source={{uri : 'https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png'}}
-                            style={{width: 40, height: 40, borderRadius: 150/2}}
-                            />
-                            <Text style={styles.activityWith}> Avec Faris </Text>
+                        <View style={stylesManif.textUnderActivityPicture}>
+                          <View style={{flexDirection:'column', flex: 4}}>
+                            <Text style={stylesManif.typePlaces}>FÊTE LOCALE</Text>
+                            <Text style={stylesManif.activityName}>Le marché au fleur du ...</Text>
+                            <Text style={stylesManif.dayPlaceActivity}>jeu 18:00 - Cours Saleya - Nice </Text>
+                          </View>
+                          <View style={stylesManif.viewActivityWith}>
+                            <Text style={stylesManif.dayActivity}> 20 </Text>
+                            <Text style={stylesManif.monthActivity}> JUN </Text>
                           </View>
                         </View>
                       </View>
-
-                      <View style={styles.viewActivity}>
-                        <View>
-                          <ImageBackground
-                          source={require('../../public/img/fond_ecran_temporaire.jpg')}
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            flexDirection: 'column'
-                          }}>
-                            <Text style={styles.categorie}>CATÉGORIE</Text>
-                            <Text style={styles.priceOne}>À partir de </Text>
-                            <Text style={styles.priceTwo}>12€</Text>
-                          </ImageBackground>
-                        </View>
-                        <View style={styles.textUnderActivityPicture}>
-                          <Text style={styles.activityName}>Nom de l'activité</Text>
-                          <Text style={styles.activityPlace}>Adresse de l'activité</Text>
-                          <View style={styles.viewActivityWith}>
-                            <Image
-                            source={{uri : 'https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png'}}
-                            style={{width: 40, height: 40, borderRadius: 150/2}}
-                            />
-                            <Text style={styles.activityWith}> Avec Faris </Text>
-                          </View>
-                        </View>
-                      </View>
-
-                      <View style={styles.viewActivity}>
-                        <View>
-                          <ImageBackground
-                          source={require('../../public/img/photo_large_temporaire.jpg')}
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            flexDirection: 'column'
-                          }}>
-                            <Text style={styles.categorie}>CATÉGORIE</Text>
-                            <Text style={styles.priceOne}>À partir de </Text>
-                            <Text style={styles.priceTwo}>12€</Text>
-                          </ImageBackground>
-                        </View>
-                        <View style={styles.textUnderActivityPicture}>
-                          <Text style={styles.activityName}>Nom de l'activité</Text>
-                          <Text style={styles.activityPlace}>Adresse de l'activité</Text>
-                          <View style={styles.viewActivityWith}>
-                            <Image
-                            source={{uri : 'https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png'}}
-                            style={{width: 40, height: 40, borderRadius: 150/2}}
-                            />
-                            <Text style={styles.activityWith}> Avec Faris </Text>
-                          </View>
-                        </View>
-                      </View>
-                    </ScrollView>
+                    </TouchableOpacity>
+                  </ScrollView>
                   </View>
 
-                  {/* Volet "Manifestations locales" */}
                   <View style={{flexDirection: 'row'}}>
                     <Text style={stylesManif.title}>
-                      Manifestations locales
+                      Les prochains stages
                     </Text>
-                    <Text style={stylesManif.seeMore}>
+                    {/*<Text style={styles.seeMore}>
                       VOIR +
-                    </Text>
+                    </Text>*/}
                   </View>
                   <View style={{ height: 250, marginTop: 20 }}>
                     <ScrollView
