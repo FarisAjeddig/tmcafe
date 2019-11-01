@@ -1,11 +1,5 @@
 import React, { Component } from 'react'
-import {
- Text,
- View,
- Image,
- StatusBar,
- Dimensions
-} from 'react-native'
+import { Dimensions } from 'react-native'
 
 import {
 createStackNavigator,
@@ -24,8 +18,7 @@ import ConnexionPickerScreen from '../Screens/ChooseTypeConnexion'
 import Home from '../Screens/Main/Home'
 
 
-import Favoris from '../Screens/Favoris/Favoris'
-import Activitys from '../Screens/Favoris/Activitys'
+import MyEvent from '../Screens/MyEvent/MyEvent'
 
 import EditProfile from '../Screens/Profil/EditProfile'
 import WhoIsTCM from '../Screens/Profil/WhoIsTCM'
@@ -71,9 +64,9 @@ import Partner from '../Screens/Profil/Partner'
    },
  });
 
- const FavorisNavigator = createStackNavigator({
-   Activitys: {
-     screen: Activitys,
+ const MyEventNavigator = createStackNavigator({
+   MyEvent: {
+     screen: MyEvent,
      navigationOptions: {
        tabBarVisible: false
      }
@@ -156,13 +149,14 @@ const Navigator = createBottomTabNavigator({
           tabBarLabel: 'Accueil'
       }
  },
- Favoris: {
-   screen: Favoris,
+ MyEvent: {
+   screen: MyEvent,
    navigationOptions: {
           tabBarIcon: ({ focused, tintColor }) => {
-              const iconName = `${focused ? 'ios-heart' : 'ios-heart-empty'}`;
+              const iconName = `${focused ? 'md-star' : 'md-star-outline'}`;
               return <Ionicons name={iconName} size={25} color={tintColor} />;
           },
+          tabBarLabel: 'Mes événements'
       }
  },
  Profil: {
@@ -191,7 +185,7 @@ export default createSwitchNavigator({
   Loading: LoadingNavigator,
   Auth: AuthNavigator,
   MainApp: Navigator,
-  Favoris: FavorisNavigator,
+  MyEvent: MyEventNavigator,
   ProfilNav: ProfilNavigator
 },
 {

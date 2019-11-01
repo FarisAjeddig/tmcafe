@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 
-export default class Activitys extends React.Component {
+export default class MyEvent extends React.Component {
     constructor(props) {
         super(props);
         this.state = ({})
