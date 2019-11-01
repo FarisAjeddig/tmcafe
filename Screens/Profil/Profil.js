@@ -76,10 +76,10 @@ export default class Profil extends React.Component {
           <ScrollView style={{flex: 4}}>
 
             <View style={styles.viewItem}>
-              <Ionicons name="md-send" size={30} style={styles.iconItem} />
+              <Ionicons name="md-person" size={30} style={styles.iconItem} />
               <TouchableHighlight
                 style={styles.highLightItem}
-                onPress={() => this.props.navigation.navigate('InviteFriend')}>
+                onPress={() => this.props.navigation.navigate('EditProfile')}>
                 <Text style={styles.textItem} >
                   Changer les informations de mon profil
                 </Text>
@@ -87,99 +87,99 @@ export default class Profil extends React.Component {
             </View>
 
             <View style={styles.viewItem}>
-              <Ionicons name="md-briefcase" size={30} style={styles.iconItem} />
+              <Ionicons name="md-lock" size={30} style={styles.iconItem} />
               <TouchableHighlight
                 style={styles.highLightItem}
-                onPress={() => {}}>
+                onPress={() => this.props.navigation.navigate('EditPassword')}>
                 <Text style={styles.textItem} >
                   Changer mon mot de passe
                 </Text>
               </TouchableHighlight>
             </View>
 
-                <View
-                  style={{
-                    borderBottomColor: 'gray',
-                    borderBottomWidth: 0.5,
-                    marginBottom: 15,
-                    marginTop: 15
-                  }}
-                />
+            <View
+              style={{
+                borderBottomColor: 'gray',
+                borderBottomWidth: 0.5,
+                marginBottom: 15,
+                marginTop: 15
+              }}
+            />
 
-                <View>
-                  <Text style={{fontSize: 15, color: 'gray', marginLeft: 20, marginBottom: 10}}> Thema Café Montpellier </Text>
-                </View>
+            <View>
+              <Text style={{fontSize: 15, color: 'gray', marginLeft: 20, marginBottom: 10}}> Thema Café Montpellier </Text>
+            </View>
 
-                <View style={styles.viewItem}>
-                  <Ionicons name="md-people" size={30} style={styles.iconItem} />
-                  <TouchableHighlight
-                  style={styles.highLightItem}
-                  onPress={() => this.props.navigation.navigate('WhoIsBeeShary')}>
-                  <Text style={styles.textItem} >
-                    Qui sommes-nous ?
-                    </Text>
-                  </TouchableHighlight>
-                </View>
+            <View style={styles.viewItem}>
+              <Ionicons name="md-people" size={30} style={styles.iconItem} />
+              <TouchableHighlight
+                style={styles.highLightItem}
+                onPress={() => this.props.navigation.navigate('WhoIsTCM')}>
+                <Text style={styles.textItem} >
+                  Qui sommes-nous ?
+                </Text>
+              </TouchableHighlight>
+            </View>
 
-                <View style={styles.viewItem}>
-                  <Ionicons name="logo-game-controller-a" size={30} style={styles.iconItem} />
-                  <TouchableHighlight
-                    style={styles.highLightItem}
-                    onPress={() => this.props.navigation.navigate('WhoIsBeeShary')}>
-                    <Text style={styles.textItem} >
-                        Les partenaires
-                    </Text>
-                  </TouchableHighlight>
-                </View>
+            <View style={styles.viewItem}>
+              <Ionicons name="md-contacts" size={30} style={styles.iconItem} />
+              <TouchableHighlight
+                style={styles.highLightItem}
+                onPress={() => this.props.navigation.navigate('Partner')}>
+                <Text style={styles.textItem} >
+                  Les partenaires
+                </Text>
+              </TouchableHighlight>
+            </View>
 
-                <View style={styles.viewItem}>
-                  <Ionicons name="logo-game-controller-a" size={30} style={styles.iconItem} />
-                  <TouchableHighlight
-                    style={styles.highLightItem}
-                    onPress={() => this.props.navigation.navigate('WhoIsBeeShary')}>
-                    <Text style={styles.textItem} >
-                        RGPD et CGV
-                    </Text>
-                  </TouchableHighlight>
-                </View>
+            <View style={styles.viewItem}>
+              <Ionicons name="md-document" size={30} style={styles.iconItem} />
+              <TouchableHighlight
+                style={styles.highLightItem}
+                onPress={() => this.props.navigation.navigate('RGPDCGV')}>
+                <Text style={styles.textItem} >
+                    RGPD et CGV
+                </Text>
+              </TouchableHighlight>
+            </View>
 
-                <View
-                  style={{
-                    borderBottomColor: 'gray',
-                    borderBottomWidth: 0.5,
-                    marginBottom: 15,
-                    marginTop: 15
-                  }}
-                />
+            <View
+              style={{
+                borderBottomColor: 'gray',
+                borderBottomWidth: 0.5,
+                marginBottom: 15,
+                marginTop: 15
+              }}
+            />
 
-                <View>
-                  <Text style={{fontSize: 15, color: 'gray', marginLeft: 20, marginBottom: 10}}> Support </Text>
-                </View>
+            <View>
+              <Text style={{fontSize: 15, color: 'gray', marginLeft: 20, marginBottom: 10}}> Support </Text>
+            </View>
 
-                <View style={styles.viewItem}>
-                  <Ionicons name="md-mail" size={30} style={styles.iconItem} />
-                  <TouchableHighlight
-                    style={styles.highLightItem}
-                    onPress={() => this.props.navigation.navigate('ContactUs')}>
-                    <Text style={styles.textItem} >
-                      Contactez-nous
-                    </Text>
-                  </TouchableHighlight>
-                </View>
+            <View style={styles.viewItem}>
+              <Ionicons name="md-mail" size={30} style={styles.iconItem} />
+              <TouchableHighlight
+                style={styles.highLightItem}
+                onPress={() => this.props.navigation.navigate('ContactUs')}>
+                <Text style={styles.textItem} >
+                  Contactez-nous
+                </Text>
+              </TouchableHighlight>
+            </View>
 
-                <View style={styles.viewItem}>
-                  <Ionicons name="md-log-out" size={30} style={styles.iconItem} />
-                  <TouchableHighlight
-                    style={styles.highLightItem}
-                    onPress={() => this.deconnexion()}>
-                    <Text style={styles.textItem} >
-                      Déconnexion
-                    </Text>
-                  </TouchableHighlight>
-                </View>
+            <View style={styles.viewItem}>
+              <Ionicons name="md-log-out" size={30} style={styles.iconItem} />
+              <TouchableHighlight
+                style={styles.highLightItem}
+                onPress={() => this.deconnexion()}>
+                <Text style={styles.textItem} >
+                  Déconnexion
+                </Text>
+              </TouchableHighlight>
+            </View>
 
-              </ScrollView>
-          </View>
+          </ScrollView>
+        </View>
         );
     }
 }
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     headerProfil: {
-        paddingTop: 20,
+        paddingTop: 50,
         paddingBottom: 20,
         backgroundColor: "#fff",
         alignSelf: 'center',

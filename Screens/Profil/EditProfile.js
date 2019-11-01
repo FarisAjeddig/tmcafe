@@ -19,7 +19,7 @@ import {
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {TextField} from 'react-native-material-textfield';
 
-export default class InviteFriend extends React.Component {
+export default class EditProfile extends React.Component {
 
   constructor(props) {
     super(props);
@@ -31,8 +31,13 @@ export default class InviteFriend extends React.Component {
       messageError: "",
       modalVisible: false
     })
-
   }
+
+  async setDataToAsyncStorage(keys, values){
+    for (i=0; i<keys.length; i++){
+      AsyncStorage.setItem(keys[i], values[i]);
+    }
+  };
 
   componentDidMount = () => {
     let keys = ['username', 'email', 'id'];
@@ -66,7 +71,6 @@ export default class InviteFriend extends React.Component {
   }
 
   onUsernameChange(username){
-    console.log("username change");
     this.username = username;
   }
 
@@ -109,13 +113,23 @@ export default class InviteFriend extends React.Component {
       }
     };
 
-    return fetch('https://www.thema-cafe.fr/api/profile/edit', data)
+    // return fetch('https://www.thema-cafe.fr/api/profile/edit', data)
+    return fetch('https://ce413d70.ngrok.io/api/profile/edit', data)
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);
 
         switch (responseJson.statut) {
           case 'OK':
+            let keys = [
+                'email',
+                'username'
+              ];
+            let values = [
+              this.email,
+              this.username
+            ];
+            this.setDataToAsyncStorage(keys, values);
             Alert.alert('Les modifications ont bien étés prises en compte');
             this.props.navigation.goBack();
             break;

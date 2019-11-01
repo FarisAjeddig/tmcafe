@@ -29,11 +29,12 @@ import HomeDetails from '../Screens/Main/HomeDetails'
 import Favoris from '../Screens/Favoris/Favoris'
 import Activitys from '../Screens/Favoris/Activitys'
 
-import InviteFriend from '../Screens/Profil/InviteFriend'
-import WhoIsBeeShary from '../Screens/Profil/WhoIsBeeShary'
-import FAQ from '../Screens/Profil/FAQ'
-import PrivacyPolicy from '../Screens/Profil/PrivacyPolicy'
+import EditProfile from '../Screens/Profil/EditProfile'
+import WhoIsTCM from '../Screens/Profil/WhoIsTCM'
+import EditPassword from '../Screens/Profil/EditPassword'
+import RGPDCGV from '../Screens/Profil/RGPDCGV'
 import ContactUs from '../Screens/Profil/ContactUs'
+import Partner from '../Screens/Profil/Partner'
 
 
  const LoadingNavigator = createStackNavigator({
@@ -119,35 +120,46 @@ import ContactUs from '../Screens/Profil/ContactUs'
             }
         }
    },
-   InviteFriend: {
-     screen: InviteFriend,
+   EditProfile: {
+     screen: EditProfile,
      navigationOptions: {
        title: 'Modifier ses informations personnelles'
        // header: true
      }
    },
-   WhoIsBeeShary: {
-     screen: WhoIsBeeShary,
+   WhoIsTCM: {
+     screen: WhoIsTCM,
      navigationOptions: {
-       header: null
+       title: "Qui sommes-nous ?"
+       // header: null
      }
    },
-   FAQ: {
-     screen: FAQ,
+   EditPassword: {
+     screen: EditPassword,
      navigationOptions: {
-       header: null
+       title: 'Modifier son mot de passe'
+       // header: null
+     }
+   },
+   Partner: {
+     screen: Partner,
+     navigationOptions: {
+       title: 'Les partenaires'
+       // header: null
      }
    },
    ContactUs: {
      screen: ContactUs,
      navigationOptions: {
-       header: null
+       title: 'Contactez-nous'
+       // header: null
      }
    },
-   PrivacyPolicy: {
-     screen: PrivacyPolicy,
+   RGPDCGV: {
+     screen: RGPDCGV,
      navigationOptions: {
-       header: null
+       title: 'RGPD & CGV'
+       // header: null
      }
    }
  });
@@ -176,7 +188,7 @@ import ContactUs from '../Screens/Profil/ContactUs'
      screen: ProfilNavigator,
      navigationOptions: {
             tabBarIcon: ({ focused, tintColor }) => {
-                const iconName = `ios-settings${!focused ? '' : ''}`;
+                const iconName = `ios-person${!focused ? '' : ''}`;
                 return <Ionicons name={iconName} size={25} color={tintColor} />;
             }
         }
