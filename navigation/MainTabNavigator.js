@@ -16,6 +16,7 @@ import ProfilScreen from '../Screens/Profil/Profil'
 import SignUpScreen from '../Screens/Inscription'
 import ConnexionPickerScreen from '../Screens/ChooseTypeConnexion'
 import Home from '../Screens/Main/Home'
+import PartyDetails from '../Screens/Main/PartyDetails'
 
 
 import MyEvent from '../Screens/MyEvent/MyEvent'
@@ -83,6 +84,14 @@ import Partner from '../Screens/Profil/Partner'
          return <Ionicons name={iconName} size={25} color={tintColor} />;
        },
        tabBarLabel: 'Accueil'
+     }
+   },
+   PartyDetails: {
+     screen: PartyDetails,
+     navigationOptions: {
+       // header: null,
+       headerTransparent: true,
+       headerTintColor: 'white'
      }
    }
  })

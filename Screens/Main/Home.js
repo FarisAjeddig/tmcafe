@@ -6,19 +6,77 @@ import {
     ImageBackground,
     Dimensions,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    FlatList
 } from 'react-native';
 
 const { width, height } = Dimensions.get('window')
 
-export default class Home extends React.Component {
-constructor(props) {
-  super(props);
-  this.state = {}
+Item = ({ name, price, url_picture, date, id, navigation }) => {
+  monthToLetter = (number) => {
+    array = ["JANV", "FEV", "MARS", "AVRIL", "MAI", "JUIN", "JUIL", "AOÛT", "SEPT", "OCT", "NOV", "DEC"];
+    return array[number];
+  }
+  var days = String(String(date).split(' ')[0]).split('-');
+  month = monthToLetter(+days[1]-1);
+  day = days[2].split('T')[0];
+  console.log(this);
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('PartyDetails')}>
+      <View style={styles.viewActivity}>
+        <View>
+          <ImageBackground
+          source={{uri: 'https://ce413d70.ngrok.io/uploads/pictures/' + url_picture}}
+          style={{width: '100%',height: '100%'}}>
+          </ImageBackground>
+        </View>
+        <View style={styles.textUnderActivityPicture}>
+          <View style={{flexDirection:'column', flex: 4}}>
+            <Text style={styles.typePlaces}>Réservez maintenant</Text>
+            <Text style={styles.activityName}>{name}</Text>
+            <Text style={styles.dayPlaceActivity}>À partir de {price}€ </Text>
+          </View>
+          <View style={styles.viewActivityWith}>
+            <Text style={styles.dayActivity}> {day} </Text>
+            <Text style={styles.monthActivity}> {month} </Text>
+          </View>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
 }
 
-render() {
-  return (
+export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataParty: [],
+      dataStage: []
+    }
+  }
+
+  componentDidMount = () => {
+    fetch('https://ce413d70.ngrok.io/api/partys')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({dataParty: responseJson})
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+ // Remplacer "partys" par "stages" quand ce sera en place
+    return fetch('https://ce413d70.ngrok.io/api/partys')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({dataStage: responseJson})
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  render(){
+    return (
       <View style={styles.container}>
         <ScrollView style={{flexDirection: 'column', width: width}}>
           <View style={{flex: 1, flexDirection: 'column'}}>
@@ -32,32 +90,18 @@ render() {
             </View>
 
             <View style={{ height: 250, marginTop: 20 }}>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            >
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
-                <View style={styles.viewActivity}>
-                  <View>
-                    <ImageBackground
-                    source={require('../../public/img/image_carre_temporaire.jpg')}
-                    style={{width: '100%',height: '100%'}}>
-                    </ImageBackground>
-                  </View>
-                  <View style={styles.textUnderActivityPicture}>
-                    <View style={{flexDirection:'column', flex: 4}}>
-                      <Text style={styles.typePlaces}>FÊTE LOCALE</Text>
-                      <Text style={styles.activityName}>Le marché au fleur du ...</Text>
-                      <Text style={styles.dayPlaceActivity}>jeu 18:00 - Cours Saleya - Nice </Text>
-                    </View>
-                    <View style={styles.viewActivityWith}>
-                      <Text style={styles.dayActivity}> 20 </Text>
-                      <Text style={styles.monthActivity}> JUN </Text>
-                    </View>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            </ScrollView>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+              >
+                <FlatList
+                  data={this.state.dataParty}
+                  horizontal={true}
+                  renderItem={({ item }) => <Item name={item.name} price={item.price} url_picture={item.picture} date={item.day} id={item.id} navigation={this.props.navigation} />}
+                  keyExtractor={item => item.id}
+                />
+
+              </ScrollView>
             </View>
 
             <View style={{flexDirection: 'row'}}>
@@ -73,74 +117,12 @@ render() {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
               >
-                <View style={styles.viewActivity}>
-                  <View>
-                    <ImageBackground
-                    source={require('../../public/img/image_carre_temporaire.jpg')}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                    }}>
-                    </ImageBackground>
-                  </View>
-                  <View style={styles.textUnderActivityPicture}>
-                      <View style={{flexDirection:'column', flex: 4}}>
-                        <Text style={styles.typePlaces}>FÊTE LOCALE</Text>
-                        <Text style={styles.activityName}>Le marché au fleur du ...</Text>
-                        <Text style={styles.dayPlaceActivity}>jeu 18:00 - Cours Saleya - Nice </Text>
-                      </View>
-                    <View style={styles.viewActivityWith}>
-                      <Text style={styles.dayActivity}> 20 </Text>
-                      <Text style={styles.monthActivity}> JUN </Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.viewActivity}>
-                  <View>
-                    <ImageBackground
-                    source={require('../../public/img/fond_ecran_temporaire.jpg')}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                    }}>
-                    </ImageBackground>
-                  </View>
-                  <View style={styles.textUnderActivityPicture}>
-                    <View style={{flexDirection:'column', flex: 4}}>
-                      <Text style={styles.typePlaces}>MARCHE ARTISANALE</Text>
-                      <Text style={styles.activityName}>Le marché au fleur du ...</Text>
-                      <Text style={styles.dayPlaceActivity}>jeu 18:00 - Cours Saleya - Nice </Text>
-                    </View>
-                    <View style={styles.viewActivityWith}>
-                      <Text style={styles.dayActivity}> 20 </Text>
-                      <Text style={styles.monthActivity}> JUN </Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.viewActivity}>
-                  <View>
-                    <ImageBackground
-                    source={require('../../public/img/photo_large_temporaire.jpg')}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                    }}>
-                    </ImageBackground>
-                  </View>
-                  <View style={styles.textUnderActivityPicture}>
-                    <View style={{flexDirection:'column', flex: 4}}>
-                      <Text style={styles.typePlaces}>MARCHE ARTISANALE</Text>
-                      <Text style={styles.activityName}>Le marché au fleur du ...</Text>
-                      <Text style={styles.dayPlaceActivity}>jeu 18:00 - Cours Saleya - Nice </Text>
-                    </View>
-                    <View style={styles.viewActivityWith}>
-                      <Text style={styles.dayActivity}> 20 </Text>
-                      <Text style={styles.monthActivity}> JUN </Text>
-                    </View>
-                  </View>
-                </View>
+              <FlatList
+                data={this.state.dataStage}
+                horizontal={true}
+                renderItem={({ item }) => <Item name={item.name} price={item.price} url_picture={item.picture} date={item.day} id={item.id} />}
+                keyExtractor={item => item.id}
+              />
 
               </ScrollView>
             </View>
