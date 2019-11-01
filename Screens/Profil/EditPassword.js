@@ -82,8 +82,7 @@ export default class EditPassword extends React.Component {
         }
       };
 
-      // return fetch('https://www.thema-cafe.fr/api/profile/editPassword', data)
-      return fetch('https://ce413d70.ngrok.io/api/profile/editPassword', data)
+      return fetch('https://www.thema-cafe.fr/api/profile/editPassword', data)
         .then((response) => response.json())
         .then((responseJson) => {
           console.log(responseJson);
