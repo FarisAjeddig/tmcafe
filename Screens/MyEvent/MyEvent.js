@@ -4,14 +4,9 @@ import {
     Text,
     View,
     Image,
-    TextInput,
     TouchableOpacity,
     ImageBackground,
-    Modal,
-    TouchableHighlight,
-    AsyncStorage,
-    BackHandler,
-    ToastAndroid
+    AsyncStorage
 } from 'react-native';
 
 
@@ -24,7 +19,7 @@ export default class MyEvent extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-              <Text>Bienvenue sur la page des activités</Text>
+              <Text>Bienvenue sur la page de vos événements - COMING SOON</Text>
             </View>
         );
     }

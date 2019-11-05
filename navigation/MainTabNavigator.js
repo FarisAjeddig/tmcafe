@@ -17,6 +17,7 @@ import SignUpScreen from '../Screens/Inscription'
 import ConnexionPickerScreen from '../Screens/ChooseTypeConnexion'
 import Home from '../Screens/Main/Home'
 import PartyDetails from '../Screens/Main/PartyDetails'
+import BookPlaces from '../Screens/Main/BookPlaces'
 
 
 import MyEvent from '../Screens/MyEvent/MyEvent'
@@ -91,7 +92,15 @@ import Partner from '../Screens/Profil/Partner'
      navigationOptions: {
        // header: null,
        headerTransparent: true,
-       headerTintColor: 'white'
+       headerTintColor: '#cdaf52'
+     }
+   },
+   BookPlaces: {
+     screen: BookPlaces,
+     navigationOptions: {
+       headerTransparent: true,
+       headerTintColor: 'black',
+       // title: "Réserver ses places"
      }
    }
  })

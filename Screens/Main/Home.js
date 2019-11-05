@@ -22,11 +22,11 @@ Item = ({ name, price, url_picture, date, id, navigation }) => {
   day = days[2].split('T')[0];
   console.log(this);
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('PartyDetails')}>
+    <TouchableOpacity onPress={() => navigation.navigate('PartyDetails', {id: id})}>
       <View style={styles.viewActivity}>
         <View>
           <ImageBackground
-          source={{uri: 'https://ce413d70.ngrok.io/uploads/pictures/' + url_picture}}
+          source={{uri: 'https://www.thema-cafe.fr/uploads/pictures/' + url_picture}}
           style={{width: '100%',height: '100%'}}>
           </ImageBackground>
         </View>
@@ -56,16 +56,16 @@ export default class Home extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch('https://ce413d70.ngrok.io/api/partys')
+    fetch('https://www.thema-cafe.fr/api/partys')
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({dataParty: responseJson})
+      console.log(responseJson[0]['users_entry'][0]);
     })
     .catch((error) => {
       console.error(error);
     });
- // Remplacer "partys" par "stages" quand ce sera en place
-    return fetch('https://ce413d70.ngrok.io/api/partys')
+    return fetch('https://www.thema-cafe.fr/api/stages')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({dataStage: responseJson})
@@ -97,8 +97,8 @@ export default class Home extends React.Component {
                 <FlatList
                   data={this.state.dataParty}
                   horizontal={true}
-                  renderItem={({ item }) => <Item name={item.name} price={item.price} url_picture={item.picture} date={item.day} id={item.id} navigation={this.props.navigation} />}
-                  keyExtractor={item => item.id}
+                  renderItem={({ item }) => <Item name={item.name} price={item.users_entry[0]} url_picture={item.picture} date={item.day} id={item.id} navigation={this.props.navigation} />}
+                  keyExtractor={item => item.id.toString()}
                 />
 
               </ScrollView>
@@ -112,7 +112,7 @@ export default class Home extends React.Component {
                 VOIR +
               </Text>*/}
             </View>
-            <View style={{ height: 250, marginTop: 20 }}>
+            <View style={{ height: 250, marginTop: 20, marginBottom: 50 }}>
               <ScrollView
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
@@ -120,8 +120,8 @@ export default class Home extends React.Component {
               <FlatList
                 data={this.state.dataStage}
                 horizontal={true}
-                renderItem={({ item }) => <Item name={item.name} price={item.price} url_picture={item.picture} date={item.day} id={item.id} />}
-                keyExtractor={item => item.id}
+                renderItem={({ item }) => <Item name={item.name} price={item.users_entry[0]} url_picture={item.picture} date={item.day} id={item.id} navigation={this.props.navigation} />}
+                keyExtractor={item => item.id.toString()}
               />
 
               </ScrollView>
