@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     ScrollView,
     Image, Alert,
-    Linking, TextInput
+    Linking, TextInput,
+    KeyboardAvoidingView
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import Api from '../../constants/Api';
@@ -65,6 +66,7 @@ export default class Home extends React.Component {
   render(){
     const { width, height } = Dimensions.get('window')
     return (
+      <KeyboardAvoidingView behavior="padding" enabled style={{flex: 1}}>
       <View style={styles.container}>
         <ScrollView style={{flexDirection: 'column', width: width}}>
           <Image
@@ -130,6 +132,7 @@ export default class Home extends React.Component {
           </View>
         </ScrollView>
       </View>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -12,7 +12,7 @@ import {
     AsyncStorage,
     BackHandler,
     ToastAndroid,
-    Alert
+    Alert, KeyboardAvoidingView
 } from 'react-native';
 import PasswordInputText from 'react-native-hide-show-password-input';
 import Api from '../../constants/Api';
@@ -106,63 +106,65 @@ export default class EditPassword extends React.Component {
 
     render() {
       return (
-        <View style={styles.container}>
-          <Text>Remplissez ce formulaire pour changer votre mot de passe</Text>
-          <PasswordInputText
-            value={this.actualPassword}
-            iconColor='black'
-            autoCapitalize="none"
-            autoCorrect={false}
-            label="Mot de passe actuel"
-            fontSize={20}
-            titleFontSize={17}
-            textColor='black'
-            baseColor='black'
-            tintColor='black'
-            placeholder="********"
-            onChangeText={(password) => this.onActualPasswordChange(password)}
-          />
-          <PasswordInputText
-            value={this.newPassword}
-            iconColor='black'
-            autoCapitalize="none"
-            autoCorrect={false}
-            label="Nouveau mot de passe"
-            fontSize={20}
-            titleFontSize={17}
-            textColor='black'
-            baseColor='black'
-            tintColor='black'
-            placeholder="********"
-            onChangeText={(password) => this.onNewPasswordChange(password)}
-          />
+        <KeyboardAvoidingView behavior="position" enabled>
+          <View style={styles.container}>
+            <Text>Remplissez ce formulaire pour changer votre mot de passe</Text>
+            <PasswordInputText
+              value={this.actualPassword}
+              iconColor='black'
+              autoCapitalize="none"
+              autoCorrect={false}
+              label="Mot de passe actuel"
+              fontSize={20}
+              titleFontSize={17}
+              textColor='black'
+              baseColor='black'
+              tintColor='black'
+              placeholder="********"
+              onChangeText={(password) => this.onActualPasswordChange(password)}
+            />
+            <PasswordInputText
+              value={this.newPassword}
+              iconColor='black'
+              autoCapitalize="none"
+              autoCorrect={false}
+              label="Nouveau mot de passe"
+              fontSize={20}
+              titleFontSize={17}
+              textColor='black'
+              baseColor='black'
+              tintColor='black'
+              placeholder="********"
+              onChangeText={(password) => this.onNewPasswordChange(password)}
+            />
 
-          <TouchableOpacity
-            style={{backgroundColor: '#ffc80b',borderRadius: 2,alignSelf: 'center',marginTop: 20,}}
-            onPress={() => this.submit()}>
-            <View style={{justifyContent:'center'}}>
-              <Text style={{justifyContent:'center',color: 'white',paddingTop: 15,paddingBottom: 15,fontSize: 18,marginLeft: 50,marginRight: 50}}>Modifier</Text>
-            </View>
-          </TouchableOpacity>
-
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {this.setState({modalVisible: false})}}>
-            <View style={styles.modalErr}>
-              <View style={styles.modalErr2}>
-                <Text style={{fontSize:20, fontWeight: 'bold'}}>Erreur</Text>
-                <Text>{this.state.messageError}</Text>
-                <TouchableHighlight
-                  style={styles.btnOkModal}
-                  onPress={() => this.setState({modalVisible: false})}>
-                  <Text style={{textAlign: 'center', color: 'white', paddingTop: 15, paddingBottom: 15}}>OK</Text>
-                </TouchableHighlight>
+            <TouchableOpacity
+              style={{backgroundColor: '#ffc80b',borderRadius: 2,alignSelf: 'center',marginTop: 20,}}
+              onPress={() => this.submit()}>
+              <View style={{justifyContent:'center'}}>
+                <Text style={{justifyContent:'center',color: 'white',paddingTop: 15,paddingBottom: 15,fontSize: 18,marginLeft: 50,marginRight: 50}}>Modifier</Text>
               </View>
-            </View>
-          </Modal>
-        </View>
+            </TouchableOpacity>
+
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {this.setState({modalVisible: false})}}>
+              <View style={styles.modalErr}>
+                <View style={styles.modalErr2}>
+                  <Text style={{fontSize:20, fontWeight: 'bold'}}>Erreur</Text>
+                  <Text>{this.state.messageError}</Text>
+                  <TouchableHighlight
+                    style={styles.btnOkModal}
+                    onPress={() => this.setState({modalVisible: false})}>
+                    <Text style={{textAlign: 'center', color: 'white', paddingTop: 15, paddingBottom: 15}}>OK</Text>
+                  </TouchableHighlight>
+                </View>
+              </View>
+            </Modal>
+          </View>
+        </KeyboardAvoidingView>
         );
     }
 }

@@ -14,7 +14,8 @@ import {
     BackHandler,
     ToastAndroid,
     Linking,
-    Alert
+    Alert,
+    KeyboardAvoidingView
 } from 'react-native';
 import Api from '../../constants/Api';
 
@@ -91,51 +92,53 @@ export default class ContactUs extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <Text style={styles.title}>Nos coordonnées</Text>
-        <Text style={styles.coordonates} onPress={() => Linking.openURL('mailto:bastardie.eric@orange.fr')}>bastardie.eric@orange.fr</Text>
-        <Text style={styles.coordonates} onPress={() => Linking.openURL('tel:+33618418257')}>06 18 41 82 57</Text>
-        <View></View>
+      <KeyboardAvoidingView behavior="position" style={styles.container} enabled>
+        <ScrollView>
+          <Text style={styles.title}>Nos coordonnées</Text>
+          <Text style={styles.coordonates} onPress={() => Linking.openURL('mailto:bastardie.eric@orange.fr')}>bastardie.eric@orange.fr</Text>
+          <Text style={styles.coordonates} onPress={() => Linking.openURL('tel:+33618418257')}>06 18 41 82 57</Text>
+          <View></View>
 
-        <Text style={styles.title}>Formulaire de contact</Text>
-        <Text style={{paddingLeft: 20}}>Votre message</Text>
-        <TextInput
-          style={styles.textArea}
-          onChangeText={(message) => this.onMessageChange(message)}
-          underlineColorAndroid="transparent"
-          placeholder="Votre message ici"
-          placeholderTextColor="grey"
-          numberOfLines={10}
-          multiline={true}
-        />
+          <Text style={styles.title}>Formulaire de contact</Text>
+          <Text style={{paddingLeft: 20}}>Votre message</Text>
+          <TextInput
+            style={styles.textArea}
+            onChangeText={(message) => this.onMessageChange(message)}
+            underlineColorAndroid="transparent"
+            placeholder="Votre message ici"
+            placeholderTextColor="grey"
+            numberOfLines={10}
+            multiline={true}
+          />
 
-        <TouchableOpacity
-          style={{backgroundColor: '#ffc80b',borderRadius: 2,alignSelf: 'center',marginTop: 20,}}
-          onPress={() => this.submit()}>
-          <View style={{justifyContent:'center'}}>
-            <Text style={{justifyContent:'center',color: 'white',paddingTop: 15,paddingBottom: 15,fontSize: 18,marginLeft: 50,marginRight: 50}}>Envoyer</Text>
-          </View>
-        </TouchableOpacity>
-
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {this.setState({modalVisible: false})}}>
-          <View style={styles.modalErr}>
-            <View style={styles.modalErr2}>
-              <Text style={{fontSize:20, fontWeight: 'bold'}}>Erreur</Text>
-              <Text>{this.state.messageError}</Text>
-              <TouchableHighlight
-                style={styles.btnOkModal}
-                onPress={() => this.setState({modalVisible: false})}>
-                <Text style={{textAlign: 'center', color: 'white', paddingTop: 15, paddingBottom: 15}}>OK</Text>
-              </TouchableHighlight>
+          <TouchableOpacity
+            style={{backgroundColor: '#ffc80b',borderRadius: 2,alignSelf: 'center',marginTop: 20,}}
+            onPress={() => this.submit()}>
+            <View style={{justifyContent:'center'}}>
+              <Text style={{justifyContent:'center',color: 'white',paddingTop: 15,paddingBottom: 15,fontSize: 18,marginLeft: 50,marginRight: 50}}>Envoyer</Text>
             </View>
-          </View>
-        </Modal>
+          </TouchableOpacity>
 
-      </ScrollView>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {this.setState({modalVisible: false})}}>
+            <View style={styles.modalErr}>
+              <View style={styles.modalErr2}>
+                <Text style={{fontSize:20, fontWeight: 'bold'}}>Erreur</Text>
+                <Text>{this.state.messageError}</Text>
+                <TouchableHighlight
+                  style={styles.btnOkModal}
+                  onPress={() => this.setState({modalVisible: false})}>
+                  <Text style={{textAlign: 'center', color: 'white', paddingTop: 15, paddingBottom: 15}}>OK</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Modal>
+
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

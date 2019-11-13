@@ -13,7 +13,8 @@ import {
     BackHandler,
     ToastAndroid,
     ScrollView,
-    Alert
+    Alert,
+    KeyboardAvoidingView
 } from 'react-native';
 import Api from '../../constants/Api';
 
@@ -147,6 +148,7 @@ export default class EditProfile extends React.Component {
 
   render() {
     return (
+      <KeyboardAvoidingView behavior="position" enabled>
 
         <ScrollView style={styles.container2}>
 
@@ -224,6 +226,7 @@ export default class EditProfile extends React.Component {
         </Modal>
 
       </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 

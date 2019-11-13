@@ -9,7 +9,9 @@ import {
     Modal,
     TouchableHighlight,
     AsyncStorage,
-    Dimensions
+    Dimensions,
+    KeyboardAvoidingView,
+    ScrollView
 } from 'react-native';
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {TextField} from 'react-native-material-textfield';
@@ -122,80 +124,83 @@ export default class Connexion extends React.Component {
         const {navigate} = this.props.navigation;
 
         return (
-          <ImageBackground
-            style={{flex: 1, width, height}}
-            source={{uri: 'https://dev.beeshary.com/restBeewe2/img/leatherWorkBlur.jpg'}}>
+          <KeyboardAvoidingView behavior="padding" enabled style={{flex: 1}}>
+            <ImageBackground
+              style={{flex: 1, width, height}}
+              source={{uri: 'https://dev.beeshary.com/restBeewe2/img/leatherWorkBlur.jpg'}}>
 
-            {/* Modale d'erreur */}
-            <Modal
-              animationType="fade"
-              transparent={true}
-              visible={this.state.modalVisible}
-              onRequestClose={() => {this.setState({modalVisible: false})}}
-            >
-              <View style={styles.modalErr}>
-                <View style={styles.modalErr2}>
-                  <Text style={{fontSize:20, fontWeight: 'bold'}}>Erreur</Text>
-                  <Text>{this.state.messageError}</Text>
-                  <TouchableHighlight
-                    style={styles.btnOkModal}
-                    onPress={() => this.setState({modalVisible: false})}>
-                    <Text style={{textAlign: 'center', color: 'white', paddingTop: 15, paddingBottom: 15}}>OK</Text>
-                  </TouchableHighlight>
+              {/* Modale d'erreur */}
+              <Modal
+                animationType="fade"
+                transparent={true}
+                visible={this.state.modalVisible}
+                onRequestClose={() => {this.setState({modalVisible: false})}}
+              >
+                <View style={styles.modalErr}>
+                  <View style={styles.modalErr2}>
+                    <Text style={{fontSize:20, fontWeight: 'bold'}}>Erreur</Text>
+                    <Text>{this.state.messageError}</Text>
+                    <TouchableHighlight
+                      style={styles.btnOkModal}
+                      onPress={() => this.setState({modalVisible: false})}>
+                      <Text style={{textAlign: 'center', color: 'white', paddingTop: 15, paddingBottom: 15}}>OK</Text>
+                    </TouchableHighlight>
+                  </View>
                 </View>
-              </View>
-            </Modal>
+              </Modal>
 
-            <View style={styles.container}>
-              <Image
-                style={{alignSelf: 'center', width: 160, height: 160, marginTop: 50, marginBottom: 50}}
-                source={{uri: 'https://www.thema-cafe.fr/images/8c64f68.jpg'}}
-              />
-              <Text style={styles.title}>
-                Connexion
-              </Text>
-              <View style={{margin: 20}}>
-
-                <TextField
-                  label="Identifiant"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  textColor='white'
-                  baseColor='white'
-                  tintColor='white'
-                  fontSize={20}
-                  titleFontSize={17}
-                  onChangeText={(email) => this.onMailChange(email)}
-                  value={this.mail}
-                  placeholder="example@gmail.com"
-                  keyboardType='email-address'
+              <ScrollView style={styles.container}>
+                <Image
+                  style={{alignSelf: 'center', width: 160, height: 160, marginTop: 50, marginBottom: 50}}
+                  source={{uri: 'https://www.thema-cafe.fr/images/8c64f68.jpg'}}
                 />
-                <PasswordInputText
-                    value={this.password}
-                    iconColor='white'
+                <Text style={styles.title}>
+                  Connexion
+                </Text>
+                <View style={{margin: 20}}>
+
+                  <TextField
+                    label="Identifiant"
                     autoCapitalize="none"
                     autoCorrect={false}
-                    label="Mot de passe"
-                    fontSize={20}
-                    titleFontSize={17}
                     textColor='white'
                     baseColor='white'
                     tintColor='white'
-                    placeholder="********"
-                    onChangeText={(password) => this.onPassChange(password)}
-                />
+                    fontSize={20}
+                    titleFontSize={17}
+                    onChangeText={(email) => this.onMailChange(email)}
+                    value={this.mail}
+                    placeholder="example@gmail.com"
+                    keyboardType='email-address'
+                  />
+                  <PasswordInputText
+                      value={this.password}
+                      iconColor='white'
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      label="Mot de passe"
+                      fontSize={20}
+                      titleFontSize={17}
+                      textColor='white'
+                      baseColor='white'
+                      tintColor='white'
+                      placeholder="********"
+                      onChangeText={(password) => this.onPassChange(password)}
+                  />
 
-                <TouchableOpacity
-                  style={{backgroundColor: '#ffc80b',borderRadius: 2,alignSelf: 'center',marginTop: 20,}}
-                  onPress={() => this.submit()}>
-                  <View style={{justifyContent:'center'}}>
-                    <Text style={{justifyContent:'center',color: 'white',paddingTop: 15,paddingBottom: 15,fontSize: 18,marginLeft: 50,marginRight: 50}}>CONNEXION</Text>
-                  </View>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{backgroundColor: '#ffc80b',borderRadius: 2,alignSelf: 'center',marginTop: 20,}}
+                    onPress={() => this.submit()}>
+                    <View style={{justifyContent:'center'}}>
+                      <Text style={{justifyContent:'center',color: 'white',paddingTop: 15,paddingBottom: 15,fontSize: 18,marginLeft: 50,marginRight: 50}}>CONNEXION</Text>
+                    </View>
+                  </TouchableOpacity>
 
-              </View>
-            </View>
-          </ImageBackground>
+                </View>
+                <View style={{height: 150}}></View>
+              </ScrollView>
+            </ImageBackground>
+          </KeyboardAvoidingView>
 
         );
     }

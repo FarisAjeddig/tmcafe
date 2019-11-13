@@ -6,7 +6,8 @@ import {
     Image,
     TouchableOpacity,
     ImageBackground,
-    AsyncStorage, Alert
+    AsyncStorage, Alert,
+    KeyboardAvoidingView
 } from 'react-native';
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
 import Api from '../../constants/Api';
@@ -202,6 +203,7 @@ export default class BookPlaces extends React.Component {
 
     render() {
         return (
+          <KeyboardAvoidingView behavior="padding" enabled style={{flex: 1}}>
             <ScrollView style={styles.container}>
               <Text style={{paddingTop: 30, paddingBottom: 40, textAlign: 'center', fontSize: 20, fontWeight: 'bold'}}>Récapitulatif des achats</Text>
               <View style={{flexDirection: 'column', marginLeft: 10, marginRight: 10, borderWidth: .5, borderColor: 'rgb(125,125,125)'}}>
@@ -274,7 +276,9 @@ export default class BookPlaces extends React.Component {
                   <Text style={{justifyContent:'center',color: 'white',paddingTop: 15,paddingBottom: 15,fontSize: 18,marginLeft: 50,marginRight: 50}}>Payer</Text>
                 </View>
               </TouchableOpacity>
+              <View style={{height: 60}}></View>
             </ScrollView>
+          </KeyboardAvoidingView>
         );
     }
 }

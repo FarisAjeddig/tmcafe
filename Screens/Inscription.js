@@ -7,7 +7,8 @@ import {
     ImageBackground,
     Modal,
     TouchableHighlight,
-    Dimensions, ScrollView, Alert
+    Dimensions, ScrollView, Alert,
+    KeyboardAvoidingView
 } from 'react-native';
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {TextField} from 'react-native-material-textfield';
@@ -98,6 +99,7 @@ export default class Inscription extends React.Component {
 
   render () {
       return (
+        <KeyboardAvoidingView behavior="padding" enabled style={{flex: 1}}>
           <ImageBackground
             style={{flex: 1, width, height}}
             source={{uri: 'https://dev.beeshary.com/restBeewe2/img/leatherWorkBlur.jpg'}}>
@@ -180,6 +182,7 @@ export default class Inscription extends React.Component {
               <Text style={{marginTop: 30, color: 'white', textAlign: 'center'}}>En vous inscrivant, vous acceptez que THEMA CAFÉ MONTPELLIER utilise votre adresse email pour vous envoyer des invitations à de prochaines soirées</Text>
             </ScrollView>
           </ImageBackground>
+        </KeyboardAvoidingView>
       );
   }
 }
