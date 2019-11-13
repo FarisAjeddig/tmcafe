@@ -10,6 +10,7 @@ import {
     Linking, TextInput
 } from 'react-native';
 import HTML from 'react-native-render-html';
+import Api from '../../constants/Api';
 
 const { width, height } = Dimensions.get('window')
 
@@ -31,7 +32,7 @@ export default class Home extends React.Component {
 
   componentDidMount = () => {
     let id = this.props.navigation.getParam('id');
-    return fetch('https://www.thema-cafe.fr/api/party/' + id )
+    return fetch(Api + '/api/party/' + id )
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({party: responseJson})
@@ -68,7 +69,7 @@ export default class Home extends React.Component {
         <ScrollView style={{flexDirection: 'column', width: width}}>
           <Image
             style={{width: width, height: 250}}
-            source={{uri: 'https://www.thema-cafe.fr/uploads/pictures/' + this.state.party.picture}}
+            source={{uri: Api + '/uploads/pictures/' + this.state.party.picture}}
           />
           <Text style={{fontSize: 20, color: 'rgba(70, 70, 70, 0.72)', marginLeft: 20, marginTop: 20, marginBottom: 20}}>{this.state.party.name}</Text>
 

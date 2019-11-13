@@ -16,6 +16,7 @@ import {
     Linking,
     Alert
 } from 'react-native';
+import Api from '../../constants/Api';
 
 
 export default class ContactUs extends React.Component {
@@ -67,7 +68,7 @@ export default class ContactUs extends React.Component {
       }
     };
 
-    return fetch('https://www.thema-cafe.fr/api/contact', data)
+    return fetch(Api + '/api/contact', data)
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);

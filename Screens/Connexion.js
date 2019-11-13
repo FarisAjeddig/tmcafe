@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {TextField} from 'react-native-material-textfield';
+import Api from '../constants/Api';
 const { width, height } = Dimensions.get('window')
 
 export default class Connexion extends React.Component {
@@ -79,7 +80,7 @@ export default class Connexion extends React.Component {
         }
       };
 
-      return fetch('https://www.thema-cafe.fr/api/login', data)
+      return fetch( Api + '/api/login', data)
       .then((response) => response.json())
       .then((responseJson) => {
         switch (responseJson.statut) {

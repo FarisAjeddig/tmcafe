@@ -15,6 +15,7 @@ import {
     ScrollView,
     Alert
 } from 'react-native';
+import Api from '../../constants/Api';
 
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {TextField} from 'react-native-material-textfield';
@@ -113,7 +114,7 @@ export default class EditProfile extends React.Component {
       }
     };
 
-    return fetch('https://www.thema-cafe.fr/api/profile/edit', data)
+    return fetch(Api + '/api/profile/edit', data)
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);

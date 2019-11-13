@@ -15,6 +15,7 @@ import {
     Alert
 } from 'react-native';
 import PasswordInputText from 'react-native-hide-show-password-input';
+import Api from '../../constants/Api';
 
 
 export default class EditPassword extends React.Component {
@@ -82,7 +83,7 @@ export default class EditPassword extends React.Component {
         }
       };
 
-      return fetch('https://www.thema-cafe.fr/api/profile/editPassword', data)
+      return fetch(Api + '/api/profile/editPassword', data)
         .then((response) => response.json())
         .then((responseJson) => {
           console.log(responseJson);

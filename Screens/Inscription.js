@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {TextField} from 'react-native-material-textfield';
+import Api from '../constants/Api';
 const { width, height } = Dimensions.get('window')
 
 export default class Inscription extends React.Component {
@@ -76,7 +77,7 @@ export default class Inscription extends React.Component {
       }
     };
 
-    return fetch('https://www.thema-cafe.fr/api/register', data)
+    return fetch(Api + '/api/register', data)
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);

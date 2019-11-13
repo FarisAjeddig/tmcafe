@@ -9,6 +9,7 @@ import {
     ScrollView,
     FlatList
 } from 'react-native';
+import Api from '../../constants/Api';
 
 const { width, height } = Dimensions.get('window')
 
@@ -26,7 +27,7 @@ Item = ({ name, price, url_picture, date, id, navigation }) => {
       <View style={styles.viewActivity}>
         <View>
           <ImageBackground
-          source={{uri: 'https://www.thema-cafe.fr/uploads/pictures/' + url_picture}}
+          source={{uri: Api + '/uploads/pictures/' + url_picture}}
           style={{width: '100%',height: '100%'}}>
           </ImageBackground>
         </View>
@@ -56,7 +57,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch('https://www.thema-cafe.fr/api/partys')
+    fetch(Api + '/api/partys')
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({dataParty: responseJson})
@@ -65,7 +66,7 @@ export default class Home extends React.Component {
     .catch((error) => {
       console.error(error);
     });
-    return fetch('https://www.thema-cafe.fr/api/stages')
+    return fetch(Api + '/api/stages')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({dataStage: responseJson})
