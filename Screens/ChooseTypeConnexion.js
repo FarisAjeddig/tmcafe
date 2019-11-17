@@ -38,7 +38,7 @@ export default class ChooseTypeConnexion extends React.Component {
             <View style={{flex: 1}}>
                 <ImageBackground
                     style={{flex: 1}}
-                    source={{uri: 'https://dev.beeshary.com/restBeewe2/img/leatherWorkBlur.jpg'}}>
+                    source={require('../assets/images/fondecran.jpg')}>
                     <View style={styles.container}>
                         <Image
                             style={{alignSelf: 'center', width: 160, height: 160, marginTop: 50}}

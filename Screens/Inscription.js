@@ -102,7 +102,7 @@ export default class Inscription extends React.Component {
         <KeyboardAvoidingView behavior="padding" enabled style={{flex: 1}}>
           <ImageBackground
             style={{flex: 1, width, height}}
-            source={{uri: 'https://dev.beeshary.com/restBeewe2/img/leatherWorkBlur.jpg'}}>
+            source={require('../assets/images/fondecran.jpg')}>
             {/* Modale d'erreur */}
             <Modal
               animationType="fade"
