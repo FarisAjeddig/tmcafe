@@ -215,7 +215,7 @@ export default class BookPlaces extends React.Component {
                 </View>
                 {this.placeTotal > 0 ?
                   <View style={{flexDirection: 'row'}}>
-                    <Text style={styles.textTable2}>Toute la soirée</Text>
+                    <Text style={styles.textTable2}>{this.state.party.type_event == null ? 'Toute la soirée' : 'Une personne'}</Text>
                     <Text style={styles.textTable1}>{this.placeTotal}</Text>
                     <Text style={styles.textTable}>{this.state.party.price}€</Text>
                     <Text style={styles.textTable}>{this.placeTotal * this.state.party.price}€</Text>
@@ -223,7 +223,7 @@ export default class BookPlaces extends React.Component {
                   : <View></View>}
                 {this.placeAperoConf > 0 ?
                   <View style={{flexDirection: 'row'}}>
-                    <Text style={styles.textTable2}>Apéritif et conférence</Text>
+                    <Text style={styles.textTable2}>{this.state.party.type_event == null ? 'Apéritif et conférence' : 'Un couple'}</Text>
                     <Text style={styles.textTable1}>{this.placeAperoConf}</Text>
                     <Text style={styles.textTable}>{this.state.party.price_apero_conf}€</Text>
                     <Text style={styles.textTable}>{this.placeAperoConf * this.state.party.price_apero_conf}€</Text>
@@ -258,7 +258,7 @@ export default class BookPlaces extends React.Component {
                 expiry: "Expiration",
                 cvc: "CVC"
               }}
-              cardScale={1.0}
+              cardScale={0.8}
               labelStyle={styles.label}
               inputStyle={styles.input}
               validColor={"black"}
@@ -310,10 +310,10 @@ const styles = StyleSheet.create({
     },
     label: {
       color: "black",
-      fontSize: 12,
+      fontSize: 11,
     },
     input: {
-      fontSize: 16,
+      fontSize: 14,
       color: "black",
     }
 });

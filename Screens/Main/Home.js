@@ -15,7 +15,7 @@ const { width, height } = Dimensions.get('window')
 
 Item = ({ name, price, url_picture, date, id, navigation }) => {
   monthToLetter = (number) => {
-    array = ["JANV", "FEV", "MARS", "AVRIL", "MAI", "JUIN", "JUIL", "AOÛT", "SEPT", "OCT", "NOV", "DEC"];
+    array = ["JAN", "FEV", "MAR", "AVR", "MAI", "JUN", "JUL", "AOÛ", "SEP", "OCT", "NOV", "DEC"];
     return array[number];
   }
   var days = String(String(date).split(' ')[0]).split('-');

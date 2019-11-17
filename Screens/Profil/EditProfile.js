@@ -150,7 +150,7 @@ export default class EditProfile extends React.Component {
     return (
       <KeyboardAvoidingView behavior="position" enabled>
 
-        <ScrollView style={styles.container2}>
+        <View style={styles.container2}>
 
         <TextField
           label="Nouveau pseudo"
@@ -225,7 +225,7 @@ export default class EditProfile extends React.Component {
           </View>
         </Modal>
 
-      </ScrollView>
+      </View>
       </KeyboardAvoidingView>
     );
   }
