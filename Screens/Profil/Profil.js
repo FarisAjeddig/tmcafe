@@ -12,10 +12,12 @@ import {
     AsyncStorage,
     BackHandler,
     ToastAndroid,
-    ScrollView
+    ScrollView,
+    Dimensions
 } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 
+const { width, height } = Dimensions.get('window')
 
 export default class Profil extends React.Component {
 
@@ -60,8 +62,8 @@ export default class Profil extends React.Component {
       return (
         <View style={styles.container}>
           <View style={styles.headerProfil}>
-            <View><Text style={{fontSize: 22, textAlign: 'center'}}> Bonjour {this.state.username}</Text></View>
-            <View><Text style={{fontSize: 22, textAlign: 'center'}}> {this.state.email}</Text></View>
+            <View><Text style={{fontSize: 22, textAlign: 'center', color: 'white'}}> Bonjour {this.state.username}</Text></View>
+            <View><Text style={{fontSize: 22, textAlign: 'center', color: 'white'}}> {this.state.email}</Text></View>
           </View>
 
           <View
@@ -192,10 +194,11 @@ const styles = StyleSheet.create({
     headerProfil: {
         paddingTop: 50,
         paddingBottom: 20,
-        backgroundColor: "#fff",
+        backgroundColor: "purple",
         alignSelf: 'center',
         flex: 0.15,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: width
     },
     viewItem: {
       flexDirection:'row',

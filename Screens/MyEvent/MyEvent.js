@@ -73,12 +73,13 @@ export default class MyEvent extends React.Component {
       <View style={styles.container}>
         <ScrollView style={{flexDirection: 'column'}}>
           <Text style={styles.title}>
-            Mes événements
+            Mes réservations
           </Text>
 
           <View style={{width: width, marginTop: 20, marginBottom: 20 }}>
             <FlatList
               data={this.state.data}
+              ListEmptyComponent={<View style={{textAlign: 'center', justifyContent: 'center', flex: 1}}><Text style={{fontSize: 20, paddingLeft: 30, paddingTop: 200}}>Vous n'avez pas encore de réservations</Text></View>}
               renderItem={({ item }) => <ItemMyEvent name={item[1]} price={item[3]} url_picture={item[7]} id={item[0]} date={item[5]} navigation={this.props.navigation} numberPlaces={item[4]} forfait={item[2]} />}
               keyExtractor={item => item[8].toString()}
             />
@@ -102,7 +103,8 @@ const styles = StyleSheet.create({
       fontSize: 25,
       marginTop: 20,
       fontWeight: '500',
-      paddingTop: 40
+      paddingTop: 40,
+      color: 'rgb(251, 36, 210)'
     },
     seeMore: {
       position: 'absolute',

@@ -61,7 +61,7 @@ export default class Home extends React.Component {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({dataParty: responseJson})
-      console.log(responseJson[0]['users_entry'][0]);
+      console.log(responseJson);
     })
     .catch((error) => {
       console.error(error);
@@ -79,9 +79,12 @@ export default class Home extends React.Component {
   render(){
     return (
       <View style={styles.container}>
+        <View style={{paddingTop: 20, paddingBottom: 20, borderBottomWidth: .5, width: width, flexDirection: 'row', justifyContent: 'center'}}>
+          <Text style={{color: 'red', fontSize: 20, fontWeight: 'bold'}}>THEMA</Text><Text style={{color: 'purple', fontSize: 20, fontWeight: 'bold'}}> CAFE</Text><Text style={{color: 'rgb(104, 235, 83)', fontSize: 20, fontWeight: 'bold'}}> MONTPELLIER</Text>
+        </View>
         <ScrollView style={{flexDirection: 'column', width: width}}>
           <View style={{flex: 1, flexDirection: 'column'}}>
-            <View style={{flexDirection: 'row', paddingTop: 40}}>
+            <View style={{flexDirection: 'row', paddingTop: 0}}>
               <Text style={styles.title}>
                 Les prochaines soirées
               </Text>
@@ -97,6 +100,7 @@ export default class Home extends React.Component {
               >
                 <FlatList
                   data={this.state.dataParty}
+                  ListEmptyComponent={<View style={{textAlign: 'center', justifyContent: 'center', flex: 1}}><Text style={{fontSize: 20, paddingLeft: 30}}>>>SOIRÉES EN COURS DE CRÉATION...</Text></View>}
                   horizontal={true}
                   renderItem={({ item }) => <Item name={item.name} price={item.users_entry[0]} url_picture={item.picture} date={item.day} id={item.id} navigation={this.props.navigation} />}
                   keyExtractor={item => item.id.toString()}
@@ -120,6 +124,7 @@ export default class Home extends React.Component {
               >
               <FlatList
                 data={this.state.dataStage}
+                ListEmptyComponent={<View style={{textAlign: 'center', justifyContent: 'center', flex: 1}}><Text style={{fontSize: 20, paddingLeft: 30}}>>>STAGES EN COURS DE CRÉATION...</Text></View>}
                 horizontal={true}
                 renderItem={({ item }) => <Item name={item.name} price={item.users_entry[0]} url_picture={item.picture} date={item.day} id={item.id} navigation={this.props.navigation} />}
                 keyExtractor={item => item.id.toString()}
@@ -146,7 +151,8 @@ const styles = StyleSheet.create({
       paddingLeft: 20,
       fontSize: 25,
       marginTop: 20,
-      fontWeight: '500'
+      fontWeight: '500',
+      color: 'rgb(251, 36, 210)'
     },
     seeMore: {
       position: 'absolute',

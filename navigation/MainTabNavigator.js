@@ -174,7 +174,7 @@ const Navigator = createBottomTabNavigator({
               const iconName = `${focused ? 'md-star' : 'md-star-outline'}`;
               return <Ionicons name={iconName} size={25} color={tintColor} />;
           },
-          tabBarLabel: 'Mes événements'
+          tabBarLabel: 'Mes réservations'
       }
  },
  Profil: {
@@ -191,8 +191,10 @@ const Navigator = createBottomTabNavigator({
   defaultNavigationOptions: ({ navigation }) => ({
   }),
   tabBarOptions: {
-    activeTintColor: 'blue',
-    inactiveTintColor: 'gray',
+    activeTintColor: 'white',
+    inactiveTintColor: 'rgb(58, 43, 101)',
+    activeBackgroundColor: 'rgb(104, 235, 83)',
+    inactiveBackgroundColor: 'rgb(104, 235, 83)',
   },
 });
 
