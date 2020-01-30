@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Thema Café Montpellier",
+    "name": "Thema Cafe Montpellier",
     "slug": "TCM",
     "privacy": "public",
     "sdkVersion": "35.0.0",
@@ -11,17 +11,22 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#1a2357"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "./assets/images/*",
+      "./constants/*"
     ],
     "ios": {
       "supportsTablet": true,

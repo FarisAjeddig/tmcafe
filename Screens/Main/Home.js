@@ -10,6 +10,7 @@ import {
     FlatList
 } from 'react-native';
 import Api from '../../constants/Api';
+import Colors from '../../constants/Colors.js';
 
 const { width, height } = Dimensions.get('window')
 
@@ -80,7 +81,7 @@ export default class Home extends React.Component {
     return (
       <View style={styles.container}>
         <View style={{paddingTop: 20, paddingBottom: 20, borderBottomWidth: .5, width: width, flexDirection: 'row', justifyContent: 'center'}}>
-          <Text style={{color: 'red', fontSize: 20, fontWeight: 'bold'}}>THEMA</Text><Text style={{color: 'purple', fontSize: 20, fontWeight: 'bold'}}> CAFE</Text><Text style={{color: 'rgb(104, 235, 83)', fontSize: 20, fontWeight: 'bold'}}> MONTPELLIER</Text>
+          <Text style={{color: Colors.orangeLogo, fontSize: 20, fontWeight: 'bold'}}>THEMA</Text><Text style={{color: Colors.purpleLogo, fontSize: 20, fontWeight: 'bold'}}> CAFE</Text><Text style={{color: Colors.greenLogo, fontSize: 20, fontWeight: 'bold'}}> MONTPELLIER</Text>
         </View>
         <ScrollView style={{flexDirection: 'column', width: width}}>
           <View style={{flex: 1, flexDirection: 'column'}}>

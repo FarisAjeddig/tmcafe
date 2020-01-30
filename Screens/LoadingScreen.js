@@ -40,7 +40,7 @@ export default class LoadingScreen extends Component {
         style={styles.container}>
         <Image
         style={styles.imageCenter}
-        source={{uri: 'https://www.thema-cafe.fr/images/8c64f68.jpg'}}/>
+        source={require('../assets/images/logo.png')}/>
       </View>
     )
   }

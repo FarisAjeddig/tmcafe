@@ -16,6 +16,7 @@ import {
     Dimensions
 } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
+import Colors from '../../constants/Colors.js';
 
 const { width, height } = Dimensions.get('window')
 
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
     headerProfil: {
         paddingTop: 50,
         paddingBottom: 20,
-        backgroundColor: "purple",
+        backgroundColor: Colors.purpleLogo,
         alignSelf: 'center',
         flex: 0.15,
         flexDirection: 'column',
