@@ -30,6 +30,7 @@
     "react-native-material-textfield": "^0.16.1",
     "react-native-render-html": "^4.1.2",
     "react-native-web": "^0.11.7",
+    "react-native-webview": "^8.0.5",
     "react-navigation": "^3.12.0",
     "tipsi-stripe": "^7.5.1"
   },
