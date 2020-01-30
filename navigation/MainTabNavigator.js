@@ -8,6 +8,7 @@ createBottomTabNavigator
 } from 'react-navigation'
 
 const { width, height } = Dimensions.get('window')
+import Colors from '../constants/Colors.js'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Connexion from '../Screens/Connexion'
@@ -193,8 +194,8 @@ const Navigator = createBottomTabNavigator({
   tabBarOptions: {
     activeTintColor: 'white',
     inactiveTintColor: 'rgb(58, 43, 101)',
-    activeBackgroundColor: 'rgb(104, 235, 83)',
-    inactiveBackgroundColor: 'rgb(104, 235, 83)',
+    activeBackgroundColor: Colors.greenLogo,
+    inactiveBackgroundColor: Colors.greenLogo,
   },
 });
 

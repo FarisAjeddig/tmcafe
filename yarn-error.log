@@ -1,20 +1,20 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add axios
 
 PATH: 
   /home/faris/.rbenv/shims:/home/faris/.rbenv/bin:/home/faris/.rbenv/shims:/home/faris/.rbenv/bin:/home/faris/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/bin:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
 
 Yarn version: 
-  1.19.1
+  1.21.1
 
 Node version: 
-  8.16.2
+  8.17.0
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/home/faris/Bureau/tmcafe/node_modules/@expo/image-utils/node_modules/semver'
+  Error: EACCES: permission denied, mkdir '/home/faris/Bureau/tmcafe/node_modules/analytics-node/node_modules/debug'
 
 npm manifest: 
   {
@@ -3109,6 +3109,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.1.tgz#a6c0bbe1f38f3aa0b92238ecb6ff42c344d4135d"
     integrity sha512-mYQLZnx5Qt1JgB1WEiMCf2647plpGeQ2NMR/5L0HNZzGQo4fuSPnK+wjfPnKZV0aiJDgzmWqqkV/g7JD+DW0qw==
   
+  card-validator@^3.0.0:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/card-validator/-/card-validator-3.0.1.tgz#dcc2fabd6a1cd21f361b2536423a72de99a0894f"
+    integrity sha1-3ML6vWoc0h82GyU2Qjpy3pmgiU8=
+    dependencies:
+      credit-card-type "^5.0.0"
+      lodash "3.10.1"
+  
   caseless@~0.12.0:
     version "0.12.0"
     resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
@@ -3661,6 +3669,11 @@ Lockfile:
       fbjs "^0.8.9"
       loose-envify "^1.3.1"
       object-assign "^4.1.1"
+  
+  credit-card-type@^5.0.0:
+    version "5.0.4"
+    resolved "https://registry.yarnpkg.com/credit-card-type/-/credit-card-type-5.0.4.tgz#2dd9df280411ce2bb91ed95ac31e814605717aed"
+    integrity sha1-LdnfKAQRziu5Htlawx6BRgVxeu0=
   
   cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.5:
     version "6.0.5"
@@ -7623,6 +7636,16 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
     integrity sha1-DZnzzNem0mHRm9rrkkUAXShYCOc=
   
+  lodash.compact@^3.0.1:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/lodash.compact/-/lodash.compact-3.0.1.tgz#540ce3837745975807471e16b4a2ba21e7256ca5"
+    integrity sha1-VAzjg3dFl1gHRx4WtKK6IeclbKU=
+  
+  lodash.every@^4.6.0:
+    version "4.6.0"
+    resolved "https://registry.yarnpkg.com/lodash.every/-/lodash.every-4.6.0.tgz#eb89984bebc4364279bb3aefbbd1ca19bfa6c6a7"
+    integrity sha1-64mYS+vENkJ5uzrvu9HKGb+mxqc=
+  
   lodash.isobject@^3.0.2:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
@@ -7653,6 +7676,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.padstart/-/lodash.padstart-4.6.1.tgz#d2e3eebff0d9d39ad50f5cbd1b52a7bce6bb611b"
     integrity sha1-0uPuv/DZ05rVD1y9G1KnvOa7YRs=
   
+  lodash.pick@^4.4.0:
+    version "4.4.0"
+    resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
+    integrity sha1-UvBWEP/53tQiYRRB7R/BI6AwAbM=
+  
   lodash.sortby@^4.7.0:
     version "4.7.0"
     resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -7682,6 +7710,16 @@ Lockfile:
     version "4.5.0"
     resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
     integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
+  
+  lodash.values@^4.3.0:
+    version "4.3.0"
+    resolved "https://registry.yarnpkg.com/lodash.values/-/lodash.values-4.3.0.tgz#a3a6c2b0ebecc5c2cba1c17e6e620fe81b53d347"
+    integrity sha1-o6bCsOvsxcLLocF+bmIP6BtT00c=
+  
+  lodash@3.10.1:
+    version "3.10.1"
+    resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
+    integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
   
   lodash@4.17.15, "lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.0, lodash@^4.6.1:
     version "4.17.15"
@@ -10361,6 +10399,26 @@ Lockfile:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-3.0.1.tgz#5b07b61cbd290168cd3c3662e017ebe0f356d2ca"
     integrity sha512-vbcYxPZlpF5f39GAEUF8kuGQqCNeD3E6zEdvtOq8oCGZunHXlWlKgAS6dgBKCvsHvXgHuMtpvs39VgOp8DaKig==
+  
+  react-native-credit-card-input@^0.4.1:
+    version "0.4.1"
+    resolved "https://registry.yarnpkg.com/react-native-credit-card-input/-/react-native-credit-card-input-0.4.1.tgz#e62dd1a9beeab6787e5373ba23b93831cbf5f3de"
+    integrity sha1-5i3Rqb7qtnh+U3O6I7k4Mcv1894=
+    dependencies:
+      card-validator "^3.0.0"
+      lodash.compact "^3.0.1"
+      lodash.every "^4.6.0"
+      lodash.pick "^4.4.0"
+      lodash.values "^4.3.0"
+      prop-types "^15.6.0"
+      react-native-flip-card "^3.4.1"
+  
+  react-native-flip-card@^3.4.1:
+    version "3.5.5"
+    resolved "https://registry.yarnpkg.com/react-native-flip-card/-/react-native-flip-card-3.5.5.tgz#14f13d5178660e5365e7be4ed8dbb6ff289dd1e8"
+    integrity sha512-7PCMfsQ/7K8oN0NVusYNgK4sanY7KLimnPVj5TadkQaSm0zEi7/Jy/rHfnNQQibNBImov6zzQkmcP8ch6RN5Yw==
+    dependencies:
+      prop-types "^15.5.10"
   
   react-native-gesture-handler@~1.3.0:
     version "1.3.0"

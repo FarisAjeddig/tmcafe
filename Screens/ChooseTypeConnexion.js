@@ -41,14 +41,14 @@ export default class ChooseTypeConnexion extends React.Component {
                     source={require('../assets/images/fondecran.jpg')}>
                     <View style={styles.container}>
                         <Image
-                            style={{alignSelf: 'center', width: 160, height: 160, marginTop: 50}}
-                            source={{uri: 'https://www.thema-cafe.fr/images/8c64f68.jpg'}}
+                            style={{alignSelf: 'center', width: 200, height: 200, marginTop: 50}}
+                            source={require('../assets/images/logo.png')}
                         />
                     </View>
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                           <TouchableOpacity
                               style={{marginTop:20,paddingTop:15,paddingBottom:15,paddingLeft:50,paddingRight:35, marginBottom:20,
-                                backgroundColor:'rgb(227, 126, 33)',borderRadius:30,borderWidth: 0.2,borderColor: '#fff', alignItems:'center'}}
+                                backgroundColor:'rgb(227, 126, 33)',borderRadius:30,borderWidth: 0.1,borderColor: '#fff', alignItems:'center'}}
                               onPress={() => this._goConnexion()}
                            >
                             <Text style={{color:'#fff', textAlign:'center', fontSize: 25}}>Connexion  &nbsp; <Ionicons name="ios-arrow-dropright-circle" size={25} color="white" style={{}} /> </Text>

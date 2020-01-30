@@ -152,7 +152,7 @@ export default class Connexion extends React.Component {
               <ScrollView style={styles.container}>
                 <Image
                   style={{alignSelf: 'center', width: 160, height: 160, marginTop: 50, marginBottom: 50}}
-                  source={{uri: 'https://www.thema-cafe.fr/images/8c64f68.jpg'}}
+                  source={require('../assets/images/logo.png')}
                 />
                 <Text style={styles.title}>
                   Connexion
