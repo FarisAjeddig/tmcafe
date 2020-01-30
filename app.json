@@ -29,15 +29,8 @@
       "./constants/*"
     ],
     "ios": {
-      "supportsTablet": true
-    },
-    "androidNavigationBar": {
-      "visible": true,
-      "barStyle": "dark-content",
-      "backgroundColor": "#ffffff"
-    },
-    "android": {
-      "package": "com.TCM.themacafemontpellier"
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ThemaCafeMontpellier.TCM"
     }
   }
 }
